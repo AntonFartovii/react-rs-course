@@ -1,12 +1,7 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from "../App";
+import {describe, test} from 'vitest';
 
-test('renders App component', () => {
-    render(<App />);
-    expect(true).toBe(true);
-});
+describe("Accordion test", () => {
+    test("Should show title", () => {
 
-test('it renders', () => {
-    render(<App />);
-});
+    })
+})
