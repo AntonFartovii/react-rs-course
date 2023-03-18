@@ -7,7 +7,6 @@ import {
 import MainPage from './pages/MainPage';
 import AboutPage from "./pages/AboutPage";
 import Page404 from "./pages/Page404";
-import FormPage from "./pages/FormPage";
 
 export interface IRoute {
     name: string
@@ -25,12 +24,7 @@ export const routesPages: IRoute[] = [
         name: 'About us',
         path: ABOUT_US,
         Component: <AboutPage/>,
-    },
-    {
-        name: 'Form page',
-        path: FORM_ROUTE,
-        Component: <FormPage/>,
-    },
+    }
 ]
 
 export const routesAll: IRoute[] = [
