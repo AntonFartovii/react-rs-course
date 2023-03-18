@@ -1,5 +1,6 @@
 import React from "react";
 import {ICard} from "../data/data";
+import { addFile, getDataFile } from '../core/utils';
 
 interface IFormState {
 
@@ -17,26 +18,43 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
 
     handlerSubmitForm(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        const target = event.target as typeof event.target & {
+
+
+
+      const target = event.target as typeof event.target & {
             title: { value: string };
             description: { value: string };
             date: { value: string };
             price: { value: number };
             currency: { value: string };
+            file: {files: FileList}
         };
+
+
+        let file = target.file.files[0];
+        if (file) {
+          localStorage.setItem('myImage', URL.createObjectURL(file))
+        }
 
         const newCard: ICard = {
             id: `${new Date().getTime()}`,
             title: target.title.value,
             description: target.description.value,
-            imagePath: "./src/assets/images/P14_20TE_Front view_1.png"
+            imagePath:  file
+              ? URL.createObjectURL(file)
+              : "./src/assets/images/P14_20TE_Front view_1.png"
         };
         this.props.onSubmitCard(
             newCard
         )
     }
 
-    render() {
+
+    componentDidMount(): void {
+      addFile()
+    }
+
+  render() {
        return (
            <form className="card-form" onSubmit={this.handlerSubmitForm}>
                <div className="form-field">
@@ -74,6 +92,10 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
                    <label htmlFor="file">File:</label>
                    <input id="file" name="file" type="file" />
                </div>
+               <div className="form-field">
+                   <img src="" alt=""/>
+               </div>
+
                <div className="form-field">
                    <input id="checkbox" name="checkbox" type="checkbox" />
                    <label htmlFor="checkbox">I agree to the terms and conditions</label>

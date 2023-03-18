@@ -4,16 +4,14 @@ import {BrowserRouter} from 'react-router-dom'
 import AppRouter from "./components/AppRouter";
 import Header from "./common/Header";
 import Content from "./common/Content";
+import Pages from './components/Pages';
 
 function App() {
 
     return (
         <div className="App">
             <BrowserRouter>
-                <Header/>
-                <Content>
-                    <AppRouter/>
-                </Content>
+              <Pages/>
             </BrowserRouter>
         </div>
     )

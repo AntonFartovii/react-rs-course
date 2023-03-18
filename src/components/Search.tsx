@@ -11,7 +11,7 @@ type ISearchState = {
     input: string
 }
 
-export class Search extends React.Component<ISearchProps, ISearchState> {
+export class Search extends React.Component<ISearchProps, ISearchState>  {
 
    constructor(props: ISearchProps) {
        super(props)
@@ -33,17 +33,9 @@ export class Search extends React.Component<ISearchProps, ISearchState> {
         input && this.setState({ input })
     }
 
-    componentDidUpdate(
-        prevProps: Readonly<ISearchProps>,
-        prevState: Readonly<ISearchState>, snapshot?: any): void {
-        prevState.input !== this.state.input
-        && localStorage.setItem('inputValue', this.state.input)
-
+    componentWillUnmount(): void {
+      localStorage.setItem('inputValue', this.state.input)
     }
-
-    // componentWillUnmount(): void {
-    //    localStorage.removeItem('inputValue')
-    // }
 
     render() {
         return (

@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from "../components/NavBar";
 
 interface IHeaderProps {
-
+    currentPage?: string
 }
 
 interface IHeaderState {
@@ -10,11 +10,21 @@ interface IHeaderState {
 }
 
 export default class Header extends React.Component<IHeaderProps, IHeaderState> {
+    constructor(props: IHeaderProps) {
+        super(props);
+    }
+
     render() {
         return (
-            <div className="app-header">
+            <header>
+                <div>
+                    {
+                        this.props.currentPage
+                        && 'Current page: ' + this.props.currentPage
+                    }
+                </div>
                 <NavBar/>
-            </div>
+            </header>
         );
     }
 };

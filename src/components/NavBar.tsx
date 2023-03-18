@@ -2,8 +2,9 @@ import React from 'react';
 import {IRoute, routesPages} from "../routes";
 import {NavLink} from "react-router-dom";
 
+
 interface IRouterProps {
-    showClassName: ({isActive}: {isActive: boolean}) => string
+    showClassName?: ({isActive}: {isActive: boolean}) => string
 }
 
 interface IRouterState {
@@ -31,7 +32,9 @@ export default class NavBar extends React.Component<IRouterProps, IRouterState> 
                             className={ this.showClassName }
                             end
                         >
-                            {route.name}
+                            {
+                                route.name
+                            }
                         </NavLink>
                     )}
             </div>
