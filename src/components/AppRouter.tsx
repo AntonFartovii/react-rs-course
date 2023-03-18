@@ -29,14 +29,9 @@ export default class AppRouter extends Component<IRouterProps, IRouterState> {
     render() {
         return (
                 <Routes>
-                    {/*{*/}
-                    {/*    routesAll.map( this.renderRoute )*/}
-                    {/*}*/}
-                    {/*<Route path="*" element={<Navigate to={PAGE_404}/>} />*/}
-                  <Route path={MAIN_ROUTE} element={<MainPage showPageName={this.props.showPageName}/>}/>
-                  <Route path={FORM_ROUTE} element={<FormPage showPageName={this.props.showPageName}/>}/>
-                  <Route path={ABOUT_US} element={<AboutPage showPageName={this.props.showPageName}/>}/>
-                  <Route path="*" element={<Navigate to={PAGE_404}/>} />
+                  <Route key={MAIN_ROUTE} path={MAIN_ROUTE} element={<MainPage showPageName={this.props.showPageName}/>}/>
+                  <Route key={ABOUT_US}   path={ABOUT_US} element={<AboutPage showPageName={this.props.showPageName}/>}/>
+                  <Route key={PAGE_404}   path="*" element={<Navigate to={PAGE_404}/>}/>
                 </Routes>
 
         );
