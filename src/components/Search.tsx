@@ -1,7 +1,5 @@
 
 import React, {ChangeEvent} from "react";
-import {Simulate} from "react-dom/test-utils";
-import input = Simulate.input;
 
 type ISearchProps = {
     onFilterChange: (filterText: string) => void
@@ -40,7 +38,9 @@ export class Search extends React.Component<ISearchProps, ISearchState>  {
     render() {
         return (
             <div className="search-bar">
+                <label htmlFor="my_search">Поиск:</label>
                 <input
+                    id="my_search"
                     type="text"
                     placeholder="Search..."
                     value={this.state.input}

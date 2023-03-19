@@ -1,8 +1,6 @@
 import React from "react";
-import {Search} from "../components/Search";
 import Cards from "../components/Cards";
 import {cardData} from "../data/data";
-import { IPage } from '../core/interfaces';
 
 interface IMainPageState {
 
