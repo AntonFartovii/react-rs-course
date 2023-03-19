@@ -14,7 +14,7 @@ export default class Card extends React.Component<ICardProps, ICardState> {
         const card = this.props.card
 
         return (
-            <div key={card.id} className="card">
+            <div key={card.id} id={`card_${card.id}`} className="card" data-testid={`card_${card.id}`}>
                 <img src={card.imagePath} alt={card.title} className="card-image" />
                 <div className="card-body">
                     <h2 className="card-title">{card.title}</h2>

@@ -12,13 +12,32 @@ import { cardData } from '../data/data';
 import Content from '../common/Content';
 import Header from '../common/Header';
 import { Search } from '../components/Search';
+import { waitFor } from '@testing-library/react-native';
+import Card from '../components/Card';
 
 describe('App', () => {
+  const data = cardData
 
-  test('renders an input element', () => {
-    render(<Search onFilterChange={() => {}} />);
-    const input = screen.getByRole('text')
-    // expect(screen.getByLabelText<HTMLInputElement>('my_search').value).toBe('');
+  const card = {
+    id: '1',
+    imagePath: 'path/to/image',
+    title: 'Card Title',
+    description: 'Card description',
+    price: 10,
+    currency: 'USD',
+  };
+
+  test('renders an input element', async () => {
+    render(<Cards cards={data}/>);
+    // expect(screen.getByTestId('card_4')).toBe()
+  });
+
+  test('should display all card properties', async () => {
+    const { getByText, getByAltText } = render(<Card card={card} />);
+    expect(getByAltText(card.title)).toBeInTheDocument();
+    expect(getByText(card.title)).toBeInTheDocument();
+    expect(getByText(card.description)).toBeInTheDocument();
+    expect(getByText(`${card.price} ${card.currency}`)).toBeInTheDocument();
   });
 
   test('App', async () => {
@@ -37,9 +56,9 @@ describe('App', () => {
     expect(screen.getByText('Error 404!')).toBeInTheDocument();
   });
 
-  test('', async () => {
-    const data = cardData
-    const container = render(<Cards cards={data}/>)
+  test('Cards', async () => {
+
+    render(<Cards cards={data}/>)
     const cards = document.querySelectorAll('.card')
     expect(cards.length).toBe(data.length)
   });
