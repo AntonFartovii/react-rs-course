@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {Routes, Route, Navigate} from 'react-router-dom'
 import {IRoute, routesAll} from "../routes";
-import { ABOUT_US, FORM_ROUTE, MAIN_ROUTE, PAGE_404 } from '../constants/pages';
+import { ABOUT_US, MAIN_ROUTE, PAGE_404 } from '../constants/pages';
 import MainPage from '../pages/MainPage';
 import AboutPage from '../pages/AboutPage';
-import FormPage from '../pages/FormPage';
+import Page404 from '../pages/Page404';
 
 interface IRouterProps {
   showPageName?: (name: string) => void
@@ -29,9 +29,10 @@ export default class AppRouter extends Component<IRouterProps, IRouterState> {
     render() {
         return (
                 <Routes>
-                  <Route key={MAIN_ROUTE} path={MAIN_ROUTE} element={<MainPage showPageName={this.props.showPageName}/>}/>
-                  <Route key={ABOUT_US}   path={ABOUT_US} element={<AboutPage showPageName={this.props.showPageName}/>}/>
-                  <Route key={PAGE_404}   path="*" element={<Navigate to={PAGE_404}/>}/>
+                  <Route path={MAIN_ROUTE} element={<MainPage showPageName={this.props.showPageName}/>}></Route>
+                  <Route path={ABOUT_US} element={<AboutPage showPageName={this.props.showPageName}/>}></Route>
+                  <Route path="/404" element={<Page404 showPageName={this.props.showPageName}/>}></Route>
+                  <Route path="*" element={<Page404 showPageName={this.props.showPageName}/>}></Route>
                 </Routes>
 
         );
