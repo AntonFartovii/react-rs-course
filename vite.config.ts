@@ -1,7 +1,6 @@
 import { defineConfig, UserConfig } from 'vite';
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
 import { InlineConfig } from 'vitest';
-
 
 interface VitestConfigExport extends UserConfig {
   test: InlineConfig;
@@ -11,6 +10,6 @@ interface VitestConfigExport extends UserConfig {
 export default defineConfig({
   plugins: [react()],
   test: {
-    environment: "jsdom",
+    environment: 'jsdom',
   },
 } as VitestConfigExport);
