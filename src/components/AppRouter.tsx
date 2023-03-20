@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { IRoute } from '../routes';
-import { ABOUT_US, MAIN_ROUTE } from '../constants/pages';
+import { ABOUT_US, MAIN_ROUTE, PAGE_404 } from '../constants/pages';
 import MainPage from '../pages/MainPage';
 import AboutPage from '../pages/AboutPage';
 import Page404 from '../pages/Page404';
@@ -33,7 +33,8 @@ export default class AppRouter extends Component<IRouterProps> {
           element={<AboutPage showPageName={this.props.showPageName} />}
         ></Route>
         <Route path="/404" element={<Page404 showPageName={this.props.showPageName} />}></Route>
-        <Route path="*" element={<Page404 showPageName={this.props.showPageName} />}></Route>
+
+        <Route path="*" element={<Navigate to={PAGE_404}/>}></Route>
       </Routes>
     );
   }
