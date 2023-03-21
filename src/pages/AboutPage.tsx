@@ -14,6 +14,10 @@ export default class AboutPage extends React.Component<IPageProps> {
     this.props.showPageName && this.props.showPageName(this.name);
   }
 
+  componentDidMount(): void {
+    this.showTest();
+  }
+
   render() {
     return <h1>About us</h1>;
   }
