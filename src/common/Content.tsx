@@ -6,6 +6,10 @@ interface IContentProps {
 
 export default class Content extends React.Component<IContentProps> {
   render() {
-    return <main className="container container-main">{this.props.children}</main>;
-  }
+    return <main className="container container-main">
+            <div className="inner-wrapper">
+              {this.props.children}
+            </div>
+          </main>;
+    }
 }
