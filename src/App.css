@@ -1,15 +1,24 @@
-
-
-#root {
-  /*max-width: 1280px;*/
-  margin: 0 auto;
-  /*padding: 2rem;*/
-  text-align: center;
-  width: 100%;
-}
-
 * {
   box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+
+}
+
+#root {
+  position: relative;
+  background: #ffffff;
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-content: center;
 }
 
 .App {
@@ -19,7 +28,12 @@
   height: 100vh;
 }
 
+.inner-wrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+}
 header {
+  width: 100%;
   display: flex;
   /* border-bottom: 1px solid green; */
   box-shadow: 0px 0px 10px rgba(28, 135, 83, 0.5);
@@ -50,6 +64,10 @@ header {
   box-shadow: 0px -4px 10px rgba(28, 135, 83, 0.5);
 }
 
+main {
+
+}
+
 .container-main {
   margin: 20px;
 }
@@ -62,6 +80,7 @@ header {
 }
 
 .card {
+  text-align: center;
   cursor: pointer;
   width: 300px;
   margin: 15px;
@@ -75,6 +94,7 @@ header {
 .card:hover {
   box-shadow: 0px 0px 10px rgba(28, 135, 83, 0.5);
 }
+
 .card img {
   max-width: 100%;
   max-height: 200px;
@@ -147,6 +167,7 @@ header {
   background-color: #ffffff;
 }
 
+
 .form-field {
   display: flex;
   flex-direction: column;
@@ -217,6 +238,7 @@ header {
   width: 48%;
 }
 
+
 @media screen and (max-width: 600px) {
   .price-box-left, .price-box-right {
     width: 100%;
@@ -224,4 +246,3 @@ header {
     margin-bottom: 10px;
   }
 }
-

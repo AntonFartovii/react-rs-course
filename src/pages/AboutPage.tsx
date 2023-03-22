@@ -1,27 +1,24 @@
-import React from "react";
+import React from 'react';
 import { IPageProps } from './MainPage';
 
-export default class AboutPage extends React.Component<IPageProps, any> {
-    name: string
+export default class AboutPage extends React.Component<IPageProps> {
+    name: string;
 
     constructor(props: IPageProps) {
         super(props);
-        this.name = 'О нас'
-        this.showTest = this.showTest.bind( this )
+        this.name = 'О нас';
+        this.showTest = this.showTest.bind(this);
     }
 
     showTest() {
-        this.props.showPageName &&
-        this.props.showPageName( this.name )
+        this.props.showPageName && this.props.showPageName(this.name);
     }
 
     componentDidMount(): void {
-        this.showTest()
+        this.showTest();
     }
 
     render() {
-        return(
-            <h1>About us</h1>
-        )
+        return <h1>About us</h1>;
     }
 }
