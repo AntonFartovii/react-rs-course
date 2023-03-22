@@ -1,23 +1,34 @@
-import React from "react";
-import {Search} from "../components/Search";
-import Cards from "../components/Cards";
-import {cardData} from "../data/data";
+import React from 'react';
+import Cards from '../components/Cards';
+import { cardData } from '../data/data';
 
-interface IMainPageState {
-
+export interface IPageProps {
+  showPageName?: (name: string) => void;
 }
 
-interface IMainPageProps {
+export default class MainPage extends React.Component<IPageProps> {
+  name: string;
 
-}
+  constructor(props: IPageProps) {
+    super(props);
+    this.name = 'Главная страница';
+    this.showTest = this.showTest.bind(this);
+  }
 
-export default class MainPage extends React.Component<IMainPageProps, IMainPageState> {
-    render() {
-        return (
-            <>
-                <h1>Main page</h1>
-                <Cards cards={cardData} />
-            </>
-        )
-    }
+  showTest() {
+    this.props.showPageName && this.props.showPageName(this.name);
+  }
+
+  componentDidMount(): void {
+    this.showTest();
+  }
+
+  render() {
+    return (
+      <>
+        <h1>Main page</h1>
+        <Cards cards={cardData} />
+      </>
+    );
+  }
 }
