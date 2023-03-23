@@ -238,6 +238,16 @@ main {
   width: 48%;
 }
 
+.new-img {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 @media screen and (max-width: 600px) {
   .price-box-left, .price-box-right {
