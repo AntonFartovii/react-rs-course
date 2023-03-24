@@ -1,6 +1,6 @@
 import React from 'react';
 import { ICard } from '../data/data';
-import CustomTextInput from './CustomTextInput';
+import CustomInputElement from './CustomInputElement';
 import CustomSelectElement from './CustomSelectElement';
 
 interface IFormState {
@@ -102,59 +102,50 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     };
 
     this.props.onSubmitCard( newCard );
-
-    // const target = event.target as typeof event.target & {
-    //     title: { value: string };
-    //     description: { value: string };
-    //     date: { value: string };
-    //     price: { value: number };
-    //     currency: { value: string };
-    //     file: {files: FileList}
-    // };
   }
 
   render() {
     return (
       <form className="card-form" onSubmit={this.handlerSubmitForm}>
 
-        <CustomTextInput key="1"
-                         label="Title"
-                         ref={this.inputTitle}
-                         type="text"
-                         error={this.state.error.title}/>
+        <CustomInputElement key="1"
+                            label="Title"
+                            ref={this.inputTitle}
+                            type="text"
+                            error={this.state.error.title}/>
 
-        <CustomTextInput key="2"
-                         label="Description"
-                         ref={this.inputDescription}
-                         type="text"
-                         error={this.state.error.description}/>
+        <CustomInputElement key="2"
+                            label="Description"
+                            ref={this.inputDescription}
+                            type="text"
+                            error={this.state.error.description}/>
 
-        <CustomTextInput key="3"
-                         label="Date"
-                         ref={this.inputDate}
-                         type="date"
-                         error={this.state.error.date}/>
+        <CustomInputElement key="3"
+                            label="Date"
+                            ref={this.inputDate}
+                            type="date"
+                            error={this.state.error.date}/>
 
-        <CustomTextInput key="4"
-                         label="Image"
-                         ref={this.inputFile}
-                         type="file"
-                         error={this.state.error.image}/>
+        <CustomInputElement key="4"
+                            label="Image"
+                            ref={this.inputFile}
+                            type="file"
+                            error={this.state.error.image}/>
 
-        <CustomTextInput key="5"
-                         label="Condition"
-                         ref={this.inputCondition}
-                         type="checkbox"
-                         error={this.state.error.condition}/>
+        <CustomInputElement key="5"
+                            label="Condition"
+                            ref={this.inputCondition}
+                            type="checkbox"
+                            error={this.state.error.condition}/>
 
         <div className="form-field">
           <div className="price-box">
             <div className="price-box-left">
-              <CustomTextInput key="6"
-                               label="price"
-                               ref={this.inputPrice}
-                               type="number"
-                               error={this.state.error.price}/>
+              <CustomInputElement key="6"
+                                  label="price"
+                                  ref={this.inputPrice}
+                                  type="number"
+                                  error={this.state.error.price}/>
             </div>
             <div className="price-box-right">
               <CustomSelectElement

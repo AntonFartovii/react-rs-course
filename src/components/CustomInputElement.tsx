@@ -11,7 +11,7 @@ interface IInputElements {
   [elem: string]: any
 }
 
-const CustomTextInput = forwardRef(
+const CustomInputElement = forwardRef(
     (props: ICustomTextInputProps, ref: ForwardedRef<HTMLInputElement>) => {
 
   const label = props.label.toLowerCase()
@@ -51,4 +51,4 @@ const CustomTextInput = forwardRef(
   );
 });
 
-export default CustomTextInput;
+export default CustomInputElement;
