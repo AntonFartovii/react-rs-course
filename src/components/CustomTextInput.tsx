@@ -38,7 +38,7 @@ const CustomTextInput = forwardRef(
 
   return (
     <div className="form-field">
-      <label htmlFor="my-input">{label}</label>
+      <label htmlFor="my-input">{label.toUpperCase()}</label>
       {
         elements[props.type] && elements[props.type]
       }
