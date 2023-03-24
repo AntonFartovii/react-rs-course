@@ -1,45 +1,64 @@
-// import React, { useRef } from 'react';
-//
-// export class CustomTextInput extends React.Component {
-//
-//   myInput: React.RefObject<HTMLInputElement>
-//
-//   constructor(props: any) {
-//     super(props);
-//     this.myInput = React.createRef()
-//   }
-//
-//   render() {
-//     return(
-//       <div className="form-field">
-//         <label htmlFor="title">Title:</label>
-//         <input type="text" ref={this.myInput}/>
-//       </div>
-//     )
-//   }
-//
-// }
-
-import React, { ForwardedRef, forwardRef, Ref, useImperativeHandle } from 'react';
+import React, { ForwardedRef, forwardRef, LegacyRef, Ref, useImperativeHandle } from 'react';
 
 interface ICustomTextInputProps {
+  onChange?: () => void;
   label: string;
+  error?: string
+  type: string
 }
 
-export interface ICustomTextInputMethods {
-  focusTextInput: () => void;
+interface IInputElements {
+  [elem: string]: any
 }
 
-const CustomTextInput = forwardRef((props, ref: ForwardedRef<HTMLInputElement>) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
+const CustomTextInput = forwardRef((props: ICustomTextInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+
+  const elements: IInputElements = {
+    "text": <input id="my-input" type="text" ref={ref}/>,
+    "textarea": (<input id="my-input" type="text" ref={ref}/>)
+  }
 
   return (
     <div className="form-field">
-      <label htmlFor="my-input">Title:</label>
-      <input id="my-input" type="text" ref={ref} />
-      <div className="validatiob"></div>
+      <label htmlFor="my-input">{props.label}</label>
+      {
+        elements[props.type] && elements[props.type]
+      }
+      <div className="validation">
+        {
+          props.error && props.error
+        }
+      </div>
     </div>
   );
 });
 
 export default CustomTextInput;
+
+
+// handlerSubmitForm(event: React.FormEvent<HTMLFormElement>) {
+//   event.preventDefault();
+//   const value = this.inputRef.current?.value || ''
+//
+//   if ( value.length < 1 ) {
+//     this.setState({
+//       error: {...this.state.error, title: "Length should't be 0"}
+//     })
+//   }
+
+// render() {
+//   return (
+//     <form className="card-form" onSubmit={this.handlerSubmitForm}>
+//
+//       <CustomTextInput
+//         label="Name"
+//         ref={this.inputRef}
+//         error={this.state.error.title}
+//         type="text"
+//       />
+//
+//       <input type="submit" value="Отправить"/>
+//
+//     </form>
+//   )
+// }
