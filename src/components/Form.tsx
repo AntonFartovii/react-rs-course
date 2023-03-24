@@ -1,6 +1,7 @@
 import React from 'react';
 import { ICard } from '../data/data';
 import CustomTextInput from './CustomTextInput';
+import CustomSelectElement from './CustomSelectElement';
 
 interface IFormState {
   error: {
@@ -16,7 +17,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
   inputTitle: React.RefObject<HTMLInputElement>;
   inputDescription: React.RefObject<HTMLInputElement>;
   inputPrice: React.RefObject<HTMLInputElement>;
-  inputCurrency: React.RefObject<HTMLInputElement>;
+  inputCurrency: React.RefObject<HTMLSelectElement>;
   inputCondition: React.RefObject<HTMLInputElement>;
   inputDate: React.RefObject<HTMLInputElement>;
   inputFile: React.RefObject<HTMLInputElement>;
@@ -37,7 +38,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     this.inputTitle = React.createRef<HTMLInputElement>();
     this.inputDescription = React.createRef<HTMLInputElement>();
     this.inputPrice = React.createRef<HTMLInputElement>();
-    this.inputCurrency = React.createRef<HTMLInputElement>();
+    this.inputCurrency = React.createRef<HTMLSelectElement>();
     this.inputCondition = React.createRef<HTMLInputElement>();
     this.inputDate = React.createRef<HTMLInputElement>();
     this.inputFile = React.createRef<HTMLInputElement>();
@@ -100,9 +101,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
       imagePath: URL.createObjectURL(valueFile.files[0]),
     };
 
-    this.props.onSubmitCard(
-      newCard
-    );
+    this.props.onSubmitCard( newCard );
 
     // const target = event.target as typeof event.target & {
     //     title: { value: string };
@@ -150,18 +149,19 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
 
         <div className="form-field">
           <div className="price-box">
-
             <div className="price-box-left">
-              <CustomTextInput key="6" label="price" ref={this.inputPrice} type="number"
+              <CustomTextInput key="6"
+                               label="price"
+                               ref={this.inputPrice}
+                               type="number"
                                error={this.state.error.price}/>
             </div>
             <div className="price-box-right">
-              <label htmlFor="currency">Currency:</label>
-              <select id="currency" name="currency">
-                <option value="euro">EURO</option>
-                <option value="rub">RUB</option>
-                <option value="urd">URD</option>
-              </select>
+              <CustomSelectElement
+                                label="currency"
+                                type="select"
+                                ref={this.inputCurrency}
+                                error={this.state.error.currency}/>
             </div>
           </div>
         </div>

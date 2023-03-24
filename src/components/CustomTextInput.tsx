@@ -1,6 +1,6 @@
-import React, { ForwardedRef, forwardRef, LegacyRef, Ref, useImperativeHandle } from 'react';
+import React, { ForwardedRef, forwardRef } from 'react';
 
-interface ICustomTextInputProps {
+export interface ICustomTextInputProps {
   onChange?: () => void;
   label: string;
   error?: string

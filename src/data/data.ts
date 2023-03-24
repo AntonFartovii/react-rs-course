@@ -1,3 +1,5 @@
+import { Condition } from '../constants/pages';
+
 export interface ICard {
     id: string;
     title: string;
@@ -5,6 +7,7 @@ export interface ICard {
     imagePath?: string;
     price?: number;
     currency?: string;
+    condition?: string;
 }
 
 export const cardData: ICard[] = [
@@ -15,6 +18,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/mrd1_0.png',
         price: 3000.0,
         currency: 'euro',
+        condition: Condition.NEW
     },
     {
         id: '2',
@@ -23,6 +27,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/mrdt1_0.png',
         price: 500.0,
         currency: 'euro',
+        condition: Condition.OLD
     },
     {
         id: '3',
@@ -31,6 +36,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/P14_20TE_Front view_1.png',
         price: 30300.0,
         currency: 'euro',
+        condition: Condition.NEW
     },
     {
         id: '4',
@@ -39,6 +45,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/P14x_40TE_Front view_1.png',
         price: 500.0,
         currency: 'euro',
+        condition: Condition.NEW
     },
     {
         id: '5',
@@ -47,6 +54,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/METSEPM8243_Front view_1.png',
         price: 300.0,
         currency: 'euro',
+        condition: Condition.OLD
     },
     {
         id: '6',
@@ -55,6 +63,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/LSP2316.png',
         price: 1500.0,
         currency: 'euro',
+        condition: Condition.NEW
     },
     {
         id: '7',
@@ -63,6 +72,7 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/A9Rfpfvew_14b3jl9_3bw.png',
         price: 3340.0,
         currency: 'euro',
+        condition: Condition.NEW
     },
     {
         id: '8',
@@ -71,5 +81,6 @@ export const cardData: ICard[] = [
         imagePath: './src/assets/images/7sj46.jpg',
         price: 2300.0,
         currency: 'euro',
+        condition: Condition.NEW
     },
 ];
