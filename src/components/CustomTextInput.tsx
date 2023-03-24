@@ -11,16 +11,34 @@ interface IInputElements {
   [elem: string]: any
 }
 
-const CustomTextInput = forwardRef((props: ICustomTextInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+const CustomTextInput = forwardRef(
+    (props: ICustomTextInputProps, ref: ForwardedRef<HTMLInputElement>) => {
+
+  const label = props.label.toLowerCase()
 
   const elements: IInputElements = {
-    "text": <input id="my-input" type="text" ref={ref}/>,
-    "textarea": (<input id="my-input" type="text" ref={ref}/>)
+
+    "text":     <input id={label} type="text" ref={ref}/>,
+    "number":   <input id={label} type="number" ref={ref}/>,
+    "textarea": <input id={label} type="text" ref={ref}/>,
+
+    "date":     <input id={label} type="date" ref={ref}
+                       defaultValue={new Date().toISOString().substr(0, 10)}/>,
+
+    "file":     <>
+                  <input id={label} type="file" ref={ref}/>
+                  <img src="" alt="" className="new-img"/>
+                </>,
+    "checkbox": <>
+                  I agree to the terms and conditions
+                  <input id={label} type="checkbox" ref={ref}/>
+                </>,
+
   }
 
   return (
     <div className="form-field">
-      <label htmlFor="my-input">{props.label}</label>
+      <label htmlFor="my-input">{label}</label>
       {
         elements[props.type] && elements[props.type]
       }
@@ -34,31 +52,3 @@ const CustomTextInput = forwardRef((props: ICustomTextInputProps, ref: Forwarded
 });
 
 export default CustomTextInput;
-
-
-// handlerSubmitForm(event: React.FormEvent<HTMLFormElement>) {
-//   event.preventDefault();
-//   const value = this.inputRef.current?.value || ''
-//
-//   if ( value.length < 1 ) {
-//     this.setState({
-//       error: {...this.state.error, title: "Length should't be 0"}
-//     })
-//   }
-
-// render() {
-//   return (
-//     <form className="card-form" onSubmit={this.handlerSubmitForm}>
-//
-//       <CustomTextInput
-//         label="Name"
-//         ref={this.inputRef}
-//         error={this.state.error.title}
-//         type="text"
-//       />
-//
-//       <input type="submit" value="Отправить"/>
-//
-//     </form>
-//   )
-// }

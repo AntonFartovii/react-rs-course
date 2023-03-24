@@ -249,6 +249,11 @@ main {
   justify-content: space-around;
 }
 
+.validation {
+  color: red;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 600px) {
   .price-box-left, .price-box-right {
     width: 100%;

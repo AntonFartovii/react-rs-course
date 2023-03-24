@@ -3,6 +3,9 @@ import {ICard} from "../data/data";
 import  CustomTextInput  from './CustomTextInput';
 
 interface IFormState {
+  error: {
+    [key: string]: string
+  }
 
 }
 
@@ -11,76 +14,159 @@ type IFormProps = {
 }
 
 export default class FormCard extends React.Component<IFormProps, IFormState> {
-  myInput: React.RefObject<HTMLInputElement>;
-  inputRef: React.RefObject<HTMLInputElement>;
+  inputTitle:       React.RefObject<HTMLInputElement>;
+  inputDescription: React.RefObject<HTMLInputElement>;
+  inputPrice:       React.RefObject<HTMLInputElement>;
+  inputCurrency:    React.RefObject<HTMLInputElement>;
+  inputCondition:   React.RefObject<HTMLInputElement>;
+  inputDate:        React.RefObject<HTMLInputElement>;
+  inputFile:        React.RefObject<HTMLInputElement>;
 
   constructor(props: IFormProps) {
       super(props);
       this.handlerSubmitForm = this.handlerSubmitForm.bind(this)
-      this.myInput = React.createRef<HTMLInputElement>()
-      this.inputRef = React.createRef<HTMLInputElement>()
+      this.state = {
+        error: {
+          title: '',
+          price: '',
+          description: '',
+          image: '',
+          condition: '',
+          currency: '',
+        }
+      }
+      this.inputTitle =       React.createRef<HTMLInputElement>()
+      this.inputDescription = React.createRef<HTMLInputElement>()
+      this.inputPrice =       React.createRef<HTMLInputElement>()
+      this.inputCurrency =    React.createRef<HTMLInputElement>()
+      this.inputCondition =   React.createRef<HTMLInputElement>()
+      this.inputDate =        React.createRef<HTMLInputElement>()
+      this.inputFile =        React.createRef<HTMLInputElement>()
   }
 
   handlerSubmitForm(event: React.FormEvent<HTMLFormElement>) {
-      event.preventDefault();
+    event.preventDefault();
 
-      const target = event.target as typeof event.target & {
-          title: { value: string };
-          description: { value: string };
-          date: { value: string };
-          price: { value: number };
-          currency: { value: string };
-          file: {files: FileList}
-      };
+    const valueTitle =        this.inputTitle.current?.value || ''
+    const valueDescription =  this.inputDescription.current?.value || ''
+    const valueDate =         this.inputDate.current?.value || ''
+    const valueFile =         this.inputFile.current as {files: FileList}
 
-      let file = target.file.files[0];
+    console.log( valueFile.files[0] );
 
-      if (!/^image/.test(file.type)) {
-        alert('Выбранный файл не является изображением!');
-        return;
-      }
+    if ( valueTitle.length < 1 ) {
+      this.setState((prev: IFormState ) => {
+        return {
+          error: { ...prev.error, 'title': "Length should't be 0" },
+        };
+      })
+    }
 
-      if (file) {
-        localStorage.setItem('myImage', URL.createObjectURL(file))
-      }
+    if ( valueDescription.length < 1 ) {
+      this.setState((prev: IFormState ) => {
+        return {
+          error: { ...prev.error, 'description': "Length should't be 0" },
+        };
+      })
+    }
 
-      const newCard: ICard = {
-          id: `${new Date().getTime()}`,
-          title: target.title.value,
-          description: target.description.value,
-          imagePath:  file
-            ? URL.createObjectURL(file)
-            : "./src/assets/images/P14_20TE_Front view_1.png"
-      };
-      this.props.onSubmitCard(
-          newCard
-      )
+    if ( !valueFile.files[0] ) {
+      this.setState((prev: IFormState ) => {
+        return {
+          error: { ...prev.error, 'image': "file is empty" },
+        };
+      })
+    } else if (!/^image/.test(valueFile.files[0].type)) {
+      this.setState((prev: IFormState ) => {
+        return {
+          error: { ...prev.error, 'image': "file type isn't image " },
+        };
+      })
+    }
+
+    if ( Date.parse( valueDate ) > Date.parse('2023-03-25') ) {
+      this.setState((prev: IFormState ) => {
+        return {
+          error: { ...prev.error, 'date': "incorrect date" },
+        };
+      })
+    }
+
+
+
+
+      // const target = event.target as typeof event.target & {
+      //     title: { value: string };
+      //     description: { value: string };
+      //     date: { value: string };
+      //     price: { value: number };
+      //     currency: { value: string };
+      //     file: {files: FileList}
+      // };
+      //
+      // let file = target.file.files[0];
+      //
+      // if (!/^image/.test(file.type)) {
+      //   alert('Выбранный файл не является изображением!');
+      //   return;
+      // }
+      //
+      // if (file) {
+      //   localStorage.setItem('myImage', URL.createObjectURL(file))
+      // }
+      //
+      // const newCard: ICard = {
+      //     id: `${new Date().getTime()}`,
+      //     title: target.title.value,
+      //     description: target.description.value,
+      //     imagePath:  file
+      //       ? URL.createObjectURL(file)
+      //       : "./src/assets/images/P14_20TE_Front view_1.png"
+      // };
+      // this.props.onSubmitCard(
+      //     newCard
+      // )
   }
 
   render() {
      return (
          <form className="card-form" onSubmit={this.handlerSubmitForm}>
 
-             <div className="form-field">
-                 <label htmlFor="title">Title:</label>
-                 <input id="title" name="title" type="text" ref={this.inputRef}/>
-             </div>
-             <div className="form-field">
-                 <label htmlFor="description">Description:</label>
-                 <input id="description" name="description" type="text"/>
-             </div>
-             <div className="form-field">
-                 <label htmlFor="date">Date:</label>
-                 <input
-                     defaultValue={new Date().toISOString().substr(0, 10)}
-                    id="date" name="date" type="date"/>
-             </div>
+             <CustomTextInput key="1"
+                              label="Title"
+                              ref={this.inputTitle}
+                              type="text"
+                              error={this.state.error.title}/>
+
+             <CustomTextInput key="2"
+                              label="Description"
+                              ref={this.inputDescription}
+                              type="text"
+                              error={this.state.error.description}/>
+
+             <CustomTextInput key="3"
+                              label="Date"
+                              ref={this.inputDate}
+                              type="date"
+                              error={this.state.error.date}/>
+
+             <CustomTextInput key="4"
+                              label="Image"
+                              ref={this.inputFile}
+                              type="file"
+                              error={this.state.error.image}/>
+
+             <CustomTextInput key="5"
+                              label="Condition"
+                              ref={this.inputCondition}
+                              type="checkbox"
+                              error={this.state.error.condition}/>
+
              <div className="form-field">
                  <div className="price-box">
 
                      <div className="price-box-left">
-                         <label htmlFor="price">Price:</label>
-                         <input id="price" name="price" type="number"/>
+                       <CustomTextInput key="6" label="price" ref={this.inputPrice} type="number" error={this.state.error.price}/>
                      </div>
                      <div className="price-box-right">
                          <label htmlFor="currency">Currency:</label>
@@ -92,13 +178,6 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
                      </div>
                  </div>
              </div>
-             <div className="form-field">
-                 <label htmlFor="file">File:</label>
-                 <input id="file" name="file" type="file" onChange={()=>{}}  onFocus={()=>{}}  onInput={()=>{}} />
-             </div>
-             <div className="form-field">
-                 <img src="" alt="" className="new-img"/>
-             </div>
              <div className="form-field flex-row">
                <div className="flex-row">
                  <input id="radio1" type="radio" name="state"/>
@@ -108,10 +187,6 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
                  <input id="radio2" type="radio" name="state"/>
                  <label htmlFor="radio1">новый</label>
                </div>
-             </div>
-             <div className="form-field flex-row">
-                 <input id="checkbox" name="checkbox" type="checkbox" />
-                 <label htmlFor="checkbox">I agree to the terms and conditions</label>
              </div>
              <div className="form-field">
                  <button type="submit">
