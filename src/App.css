@@ -207,7 +207,7 @@ main {
   margin-right: 10px;
 }
 
-.form-field input[type="submit"] {
+.form-field button[type="submit"] {
   background-color: #007bff;
   color: #ffffff;
   border: none;
@@ -217,7 +217,7 @@ main {
   cursor: pointer;
 }
 
-.form-field input[type="submit"]:hover {
+.form-field button[type="submit"]:hover {
   background-color: #0069d9;
 }
 

@@ -16,7 +16,10 @@ export default class Card extends React.Component<ICardProps> {
           <h2 className="card-title">{card.title}</h2>
           <p className="card-description">{card.description}</p>
           <p className="card-price">
-            {card.price ?? ''} {card.currency ?? ''}
+            {card.price && `Price: ${card.price}`} {card.currency ?? ''}
+          </p>
+          <p className="card-state">
+            {card.state && `State: ${card.state}`}
           </p>
         </div>
       </div>

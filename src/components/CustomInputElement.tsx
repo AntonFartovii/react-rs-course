@@ -19,6 +19,7 @@ const CustomInputElement = forwardRef(
   const elements: IInputElements = {
 
     "text":     <input id={label} type="text" ref={ref}/>,
+    "radio":    <input id={label} type="radio" ref={ref}/>,
     "number":   <input id={label} type="number" ref={ref}/>,
     "textarea": <input id={label} type="text" ref={ref}/>,
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { ICard } from '../data/data';
 import CustomInputElement from './CustomInputElement';
 import CustomSelectElement from './CustomSelectElement';
+import { STATE_GOOD } from '../constants/pages';
 
 interface IFormState {
   error: {
@@ -19,6 +20,8 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
   inputPrice: React.RefObject<HTMLInputElement>;
   inputCurrency: React.RefObject<HTMLSelectElement>;
   inputCondition: React.RefObject<HTMLInputElement>;
+  inputState1: React.RefObject<HTMLInputElement>;
+  inputState2: React.RefObject<HTMLInputElement>;
   inputDate: React.RefObject<HTMLInputElement>;
   inputFile: React.RefObject<HTMLInputElement>;
 
@@ -33,6 +36,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
         image: '',
         condition: '',
         currency: '',
+        state: ''
       },
     };
     this.inputTitle = React.createRef<HTMLInputElement>();
@@ -40,6 +44,8 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     this.inputPrice = React.createRef<HTMLInputElement>();
     this.inputCurrency = React.createRef<HTMLSelectElement>();
     this.inputCondition = React.createRef<HTMLInputElement>();
+    this.inputState1 = React.createRef<HTMLInputElement>();
+    this.inputState2 = React.createRef<HTMLInputElement>();
     this.inputDate = React.createRef<HTMLInputElement>();
     this.inputFile = React.createRef<HTMLInputElement>();
   }
@@ -54,7 +60,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
 
   async errorHandlerClear() {
     for (let key in this.state.error) {
-      this.state.error[key] && this.errorHandler(key, '');
+      this.state.error[key] && await this.errorHandler(key, '');
     }
   }
 
@@ -69,8 +75,19 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     const valueDescription = this.inputDescription.current?.value || '';
     const valueDate = this.inputDate.current?.value || '';
     const valueFile = this.inputFile.current as { files: FileList };
+    const valueCondition: boolean = this.inputCondition.current?.checked as boolean
+    const valuePrice = this.inputPrice.current?.value || ''
+    const valueCurrency = this.inputCurrency.current?.value
+    const valueState1: boolean = this.inputState1.current?.checked as boolean
+    const valueState2: boolean = this.inputState1.current?.checked as boolean
 
-    // console.log(valueFile.files[0]);
+    if ( !valueState1 && !valueState2 ) {
+      await this.errorHandler('state', 'should be choose');
+    }
+
+    if ( valuePrice.length < 1 ) {
+      await this.errorHandler('price', 'Length should\'t be 0');
+    }
 
     if (valueTitle.length < 1) {
       await this.errorHandler('title', 'Length should\'t be 0');
@@ -90,16 +107,32 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
       await this.errorHandler('date', 'incorrect date');
     }
 
+    if( !valueCondition ) {
+      await this.errorHandler('condition', 'Вы должны согласиться')
+    }
+
     const isError = !(Object.values(this.state.error).every((e: string) => e === ''))
 
     if ( isError ) return;
+
+    const getStateGood = () => {
+      return this.inputState1.current?.checked
+              ? this.inputState1.current?.value
+              : this.inputState2.current?.checked
+                ? this.inputState2.current?.value
+                : ''
+    }
+
 
     const newCard: ICard = {
       id: `${new Date().getTime()}`,
       title: valueTitle,
       description: valueDescription,
       imagePath: URL.createObjectURL(valueFile.files[0]),
-    };
+      price: Number(valuePrice),
+      currency: valueCurrency,
+      state: getStateGood()
+          };
 
     this.props.onSubmitCard( newCard );
   }
@@ -132,12 +165,6 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
                             type="file"
                             error={this.state.error.image}/>
 
-        <CustomInputElement key="5"
-                            label="Condition"
-                            ref={this.inputCondition}
-                            type="checkbox"
-                            error={this.state.error.condition}/>
-
         <div className="form-field">
           <div className="price-box">
             <div className="price-box-left">
@@ -157,15 +184,25 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
           </div>
         </div>
         <div className="form-field flex-row">
+
           <div className="flex-row">
-            <input id="radio1" type="radio" name="state"/>
+            <input id="radio1" type="radio" name="state" ref={this.inputState1} value={STATE_GOOD.OLD}/>
             <label htmlFor="radio1">б/у</label>
           </div>
           <div className="flex-row">
-            <input id="radio2" type="radio" name="state"/>
+            <input id="radio2" type="radio" name="state" ref={this.inputState2} value={STATE_GOOD.NEW}/>
             <label htmlFor="radio1">новый</label>
           </div>
+          <div className="validation">{this.state.error.state}</div>
         </div>
+
+
+        <CustomInputElement key="5"
+                            label="Condition"
+                            ref={this.inputCondition}
+                            type="checkbox"
+                            error={this.state.error.condition}/>
+
         <div className="form-field">
           <button type="submit">
             Отправить
