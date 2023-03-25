@@ -6,7 +6,7 @@ export default class AboutPage extends React.Component<IPageProps> {
 
     constructor(props: IPageProps) {
         super(props);
-        this.name = 'О нас';
+        this.name = 'About us';
         this.showTest = this.showTest.bind(this);
     }
 

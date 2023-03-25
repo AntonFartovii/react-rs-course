@@ -24,6 +24,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
   inputState2: React.RefObject<HTMLInputElement>;
   inputDate: React.RefObject<HTMLInputElement>;
   inputFile: React.RefObject<HTMLInputElement>;
+  form: React.RefObject<HTMLFormElement>;
 
   constructor(props: IFormProps) {
     super(props);
@@ -48,6 +49,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     this.inputState2 = React.createRef<HTMLInputElement>();
     this.inputDate = React.createRef<HTMLInputElement>();
     this.inputFile = React.createRef<HTMLInputElement>();
+    this.form = React.createRef<HTMLFormElement>();
   }
 
   async errorHandler(key: string, value: string) {
@@ -79,7 +81,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     const valuePrice = this.inputPrice.current?.value || ''
     const valueCurrency = this.inputCurrency.current?.value
     const valueState1: boolean = this.inputState1.current?.checked as boolean
-    const valueState2: boolean = this.inputState1.current?.checked as boolean
+    const valueState2: boolean = this.inputState2.current?.checked as boolean
 
     if ( !valueState1 && !valueState2 ) {
       await this.errorHandler('state', 'should be choose');
@@ -132,14 +134,15 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
       price: Number(valuePrice),
       currency: valueCurrency,
       state: getStateGood()
-          };
+    };
 
-    this.props.onSubmitCard( newCard );
+    await this.props.onSubmitCard( newCard );
+    this.form.current?.reset()
   }
 
   render() {
     return (
-      <form className="card-form" onSubmit={this.handlerSubmitForm}>
+      <form ref={this.form} className="card-form" onSubmit={this.handlerSubmitForm}>
 
         <CustomInputElement key="1"
                             label="Title"

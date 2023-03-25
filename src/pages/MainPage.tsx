@@ -11,7 +11,7 @@ export default class MainPage extends React.Component<IPageProps> {
 
   constructor(props: IPageProps) {
     super(props);
-    this.name = 'Главная страница';
+    this.name = 'Main page';
     this.showTest = this.showTest.bind(this);
   }
 
@@ -25,10 +25,7 @@ export default class MainPage extends React.Component<IPageProps> {
 
   render() {
     return (
-      <>
-        <h1>Main page</h1>
         <Cards cards={cardData} />
-      </>
     );
   }
 }

@@ -7,6 +7,7 @@ import { IPageProps } from './MainPage';
 
 interface IFormPageState {
     cards: ICard[]
+    message: string
 }
 
 
@@ -15,10 +16,11 @@ export default class FormPage extends React.Component<IPageProps, IFormPageState
 
     constructor(props: IPageProps) {
         super(props);
-        this.name = 'Форма'
+        this.name = 'Form page'
         this.showTest = this.showTest.bind( this )
         this.state = {
-            cards: []
+            cards: [],
+            message: ''
         }
     }
 
@@ -34,7 +36,8 @@ export default class FormPage extends React.Component<IPageProps, IFormPageState
 
     handleCardAdd = (card: ICard) => {
         this.setState({
-            cards: [...this.state.cards, card]
+            cards: [...this.state.cards, card],
+            message: 'Вы успешно добавили товар'
         })
     }
 
@@ -42,6 +45,7 @@ export default class FormPage extends React.Component<IPageProps, IFormPageState
         return (
             <>
                 <FormCard onSubmitCard={this.handleCardAdd}/>
+                <div className="validation">{this.state.message}</div>
                 <Cards cards={this.state.cards}/>
             </>
         );

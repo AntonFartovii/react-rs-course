@@ -13,7 +13,7 @@ export default class Header extends React.Component<IHeaderProps> {
   render() {
     return (
       <header>
-        <div>{this.props.currentPage && this.props.currentPage}</div>
+        <div>{this.props.currentPage && 'Current page: ' + this.props.currentPage}</div>
         <NavBar />
       </header>
     );
