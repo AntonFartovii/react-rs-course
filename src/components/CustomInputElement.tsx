@@ -13,44 +13,48 @@ interface IInputElements {
 
 const CustomInputElement = forwardRef(
   (props: ICustomTextInputProps, ref: ForwardedRef<HTMLInputElement>) => {
-    const label = props.label.toLowerCase();
+    class Input extends React.Component {
+      label = props.label.toLowerCase();
+      elements: IInputElements = {
+        text: <input id={this.label} type="text" ref={ref} />,
+        radio: <input id={this.label} type="radio" ref={ref} />,
+        number: <input id={this.label} type="number" ref={ref} />,
+        textarea: <input id={this.label} type="text" ref={ref} />,
 
-    const elements: IInputElements = {
-      text: <input id={label} type="text" ref={ref} />,
-      radio: <input id={label} type="radio" ref={ref} />,
-      number: <input id={label} type="number" ref={ref} />,
-      textarea: <input id={label} type="text" ref={ref} />,
+        date: (
+          <input
+            id={this.label}
+            type="date"
+            ref={ref}
+            defaultValue={new Date().toISOString().substr(0, 10)}
+          />
+        ),
 
-      date: (
-        <input
-          id={label}
-          type="date"
-          ref={ref}
-          defaultValue={new Date().toISOString().substr(0, 10)}
-        />
-      ),
+        file: (
+          <>
+            <input id={this.label} type="file" ref={ref} />
+            <img src="" alt="" className="new-img" />
+          </>
+        ),
+        checkbox: (
+          <>
+            I agree to the terms and conditions
+            <input id={this.label} type="checkbox" ref={ref} />
+          </>
+        ),
+      };
 
-      file: (
-        <>
-          <input id={label} type="file" ref={ref} />
-          <img src="" alt="" className="new-img" />
-        </>
-      ),
-      checkbox: (
-        <>
-          I agree to the terms and conditions
-          <input id={label} type="checkbox" ref={ref} />
-        </>
-      ),
-    };
-
-    return (
-      <div className="form-field">
-        <label htmlFor="my-input">{label.toUpperCase()}</label>
-        {elements[props.type] && elements[props.type]}
-        <div className="validation">{props.error && props.error}</div>
-      </div>
-    );
+      render(): React.ReactNode {
+        return (
+          <div className="form-field">
+            <label htmlFor="my-input">{this.label.toUpperCase()}</label>
+            {this.elements[props.type] && this.elements[props.type]}
+            <div className="validation">{props.error && props.error}</div>
+          </div>
+        );
+      }
+    }
+    return <Input />;
   }
 );
 

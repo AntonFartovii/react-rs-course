@@ -9,18 +9,23 @@ interface ICustomSelectProps {
 
 const CustomSelectElement = forwardRef(
   (props: ICustomSelectProps, ref: ForwardedRef<HTMLSelectElement>) => {
-    const label = props.label.toLowerCase();
+    class Select extends React.Component {
+      label = props.label.toLowerCase();
 
-    return (
-      <div className="form-field">
-        <label htmlFor="">Currency:</label>
-        <select id={label} name={label} ref={ref}>
-          <option value="euro">EURO</option>
-          <option value="rub">RUB</option>
-          <option value="urd">URD</option>
-        </select>
-      </div>
-    );
+      render(): React.ReactNode {
+        return (
+          <div className="form-field">
+            <label htmlFor="">Currency:</label>
+            <select id={this.label} name={this.label} ref={ref}>
+              <option value="euro">EURO</option>
+              <option value="rub">RUB</option>
+              <option value="urd">URD</option>
+            </select>
+          </div>
+        );
+      }
+    }
+    return <Select />;
   }
 );
 
