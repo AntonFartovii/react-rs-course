@@ -1,1 +1,1 @@
-console.log('i am test')
+console.log('i am test');

@@ -39,7 +39,7 @@ export default class AppRouter extends Component<IRouterProps> {
         ></Route>
         <Route path="/404" element={<Page404 showPageName={this.props.showPageName} />}></Route>
 
-        <Route path="*" element={<Navigate to={PAGE_404}/>}></Route>
+        <Route path="*" element={<Navigate to={PAGE_404} />}></Route>
       </Routes>
     );
   }

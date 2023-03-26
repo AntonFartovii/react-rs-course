@@ -24,8 +24,6 @@ export default class MainPage extends React.Component<IPageProps> {
   }
 
   render() {
-    return (
-        <Cards cards={cardData} />
-    );
+    return <Cards cards={cardData} />;
   }
 }

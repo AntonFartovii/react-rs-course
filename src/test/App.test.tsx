@@ -3,7 +3,6 @@ import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
-import MainPage from '../pages/MainPage';
 import AboutPage from '../pages/AboutPage';
 import Page404 from '../pages/Page404';
 import AppRouter from '../components/AppRouter';
@@ -11,7 +10,6 @@ import Cards from '../components/Cards';
 import { cardData } from '../data/data';
 import Content from '../common/Content';
 import Card from '../components/Card';
-import Header from '../common/Header';
 import { STATE_GOOD } from '../constants/pages';
 
 describe('App', () => {
@@ -24,7 +22,7 @@ describe('App', () => {
     description: 'Card description',
     price: 10,
     currency: 'USD',
-    state: STATE_GOOD.OLD
+    state: STATE_GOOD.OLD,
   };
 
   test('renders an input element', async () => {
@@ -38,7 +36,7 @@ describe('App', () => {
     expect(getByText(card.title)).toBeInTheDocument();
     expect(getByText(card.description)).toBeInTheDocument();
     expect(getByText(`Price: ${card.price} ${card.currency}`)).toBeInTheDocument();
-    expect(getByText(`State: ${card.state}`))
+    expect(getByText(`State: ${card.state}`));
   });
 
   test('App', async () => {
@@ -107,5 +105,4 @@ describe('App', () => {
     const { getByText } = render(<Content>{text}</Content>);
     expect(getByText(text)).toBeInTheDocument();
   });
-
 });

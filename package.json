@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "npx vitest --coverage",
-    "eslint": "eslint --fix . --ext .ts --ext .js --ext .tsx"
+    "eslint": "eslint --fix . --ext .ts --ext .tsx"
   },
   "dependencies": {
     "eslint-plugin-react-hooks": "^4.6.0",

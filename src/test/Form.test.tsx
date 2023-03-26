@@ -5,7 +5,7 @@ import FormPage from '../pages/FormPage';
 
 describe('Form', () => {
   test('Add card', () => {
-    render(<FormPage/>)
+    render(<FormPage />);
     expect(screen.getByTestId('form')).toBeInTheDocument();
-  })
-})
+  });
+});

@@ -8,7 +8,7 @@ export interface ICustomTextInputProps {
 }
 
 interface IInputElements {
-  [elem: string]: JSX.Element;
+  [elem: string]: any;
 }
 
 const CustomInputElement = forwardRef(
