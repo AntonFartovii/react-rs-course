@@ -15,16 +15,16 @@ type IFormProps = {
 }
 
 export default class FormCard extends React.Component<IFormProps, IFormState> {
-  inputTitle: React.RefObject<HTMLInputElement>;
-  inputDescription: React.RefObject<HTMLInputElement>;
-  inputPrice: React.RefObject<HTMLInputElement>;
-  inputCurrency: React.RefObject<HTMLSelectElement>;
-  inputCondition: React.RefObject<HTMLInputElement>;
-  inputState1: React.RefObject<HTMLInputElement>;
-  inputState2: React.RefObject<HTMLInputElement>;
-  inputDate: React.RefObject<HTMLInputElement>;
-  inputFile: React.RefObject<HTMLInputElement>;
-  form: React.RefObject<HTMLFormElement>;
+  inputTitle = React.createRef<HTMLInputElement>();
+  inputDescription = React.createRef<HTMLInputElement>();
+  inputPrice = React.createRef<HTMLInputElement>();
+  inputCurrency = React.createRef<HTMLSelectElement>();
+  inputCondition = React.createRef<HTMLInputElement>();
+  inputState1 = React.createRef<HTMLInputElement>();
+  inputState2 = React.createRef<HTMLInputElement>();
+  inputDate = React.createRef<HTMLInputElement>();
+  inputFile = React.createRef<HTMLInputElement>();
+  formRef = React.createRef<HTMLFormElement>();
 
   constructor(props: IFormProps) {
     super(props);
@@ -40,16 +40,6 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
         state: ''
       },
     };
-    this.inputTitle = React.createRef<HTMLInputElement>();
-    this.inputDescription = React.createRef<HTMLInputElement>();
-    this.inputPrice = React.createRef<HTMLInputElement>();
-    this.inputCurrency = React.createRef<HTMLSelectElement>();
-    this.inputCondition = React.createRef<HTMLInputElement>();
-    this.inputState1 = React.createRef<HTMLInputElement>();
-    this.inputState2 = React.createRef<HTMLInputElement>();
-    this.inputDate = React.createRef<HTMLInputElement>();
-    this.inputFile = React.createRef<HTMLInputElement>();
-    this.form = React.createRef<HTMLFormElement>();
   }
 
   async errorHandler(key: string, value: string) {
@@ -137,12 +127,12 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     };
 
     await this.props.onSubmitCard( newCard );
-    this.form.current?.reset()
+    this.formRef.current?.reset()
   }
 
   render() {
     return (
-      <form ref={this.form} className="card-form" onSubmit={this.handlerSubmitForm}>
+      <form ref={this.formRef} className="card-form" onSubmit={this.handlerSubmitForm}>
 
         <CustomInputElement key="1"
                             label="Title"
