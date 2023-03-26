@@ -132,7 +132,11 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
 
   render() {
     return (
-      <form ref={this.formRef} className="card-form" onSubmit={this.handlerSubmitForm}>
+      <form
+        ref={this.formRef}
+        className="card-form"
+        onSubmit={this.handlerSubmitForm}
+        data-testid="form">
 
         <CustomInputElement key="1"
                             label="Title"

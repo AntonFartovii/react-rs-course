@@ -69,6 +69,7 @@ describe('App', () => {
   //   expect(screen.getByText(/Main page/i)).toBeInTheDocument();
   // });
   //
+
   test('About page title', async () => {
     render(<AboutPage />);
     expect(screen.getByText(/About us/i)).toBeDefined();
@@ -106,4 +107,5 @@ describe('App', () => {
     const { getByText } = render(<Content>{text}</Content>);
     expect(getByText(text)).toBeInTheDocument();
   });
+
 });
