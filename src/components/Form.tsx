@@ -2,7 +2,7 @@ import React from 'react';
 import { ICard } from '../data/data';
 import CustomInputElement from './CustomInputElement';
 import CustomSelectElement from './CustomSelectElement';
-import { STATE_GOOD } from '../constants/pages';
+import { FORM_ERRORS, STATE_GOOD } from '../constants/pages';
 
 interface IFormState {
   error: {
@@ -61,8 +61,6 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
 
     await this.errorHandlerClear();
 
-    // console.log(this.state.error);
-
     const valueTitle = this.inputTitle.current?.value || '';
     const valueDescription = this.inputDescription.current?.value || '';
     const valueDate = this.inputDate.current?.value || '';
@@ -73,39 +71,46 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     const valueState1: boolean = this.inputState1.current?.checked as boolean;
     const valueState2: boolean = this.inputState2.current?.checked as boolean;
 
+    if (valueDate.length < 1) {
+      await this.errorHandler('date', FORM_ERRORS.length_0);
+    }
+
     if (!valueState1 && !valueState2) {
-      await this.errorHandler('state', 'should be choose');
+      await this.errorHandler('state', FORM_ERRORS.not_chosen);
     }
 
     if (valuePrice.length < 1) {
-      await this.errorHandler('price', "Length should't be 0");
+      await this.errorHandler('price', FORM_ERRORS.length_0);
     }
 
     if (valueTitle.length < 1) {
-      await this.errorHandler('title', "Length should't be 0");
+      await this.errorHandler('title', FORM_ERRORS.length_0);
     }
 
     if (valueDescription.length < 1) {
-      await this.errorHandler('description', "Length should't be 0");
+      await this.errorHandler('description', FORM_ERRORS.length_0);
     }
 
-    if (!valueFile.files[0]) {
-      await this.errorHandler('image', 'file is empty');
+    if (!valueFile?.files[0]) {
+      await this.errorHandler('image', FORM_ERRORS.empty);
     } else if (!/^image/.test(valueFile.files[0].type)) {
-      await this.errorHandler('image', `file type isn't image`);
+      await this.errorHandler('image', FORM_ERRORS.wrong_file);
     }
 
     if (Date.parse(valueDate) > Date.parse('2023-03-25')) {
-      await this.errorHandler('date', 'incorrect date');
+      await this.errorHandler('date', FORM_ERRORS.wrong_date);
     }
 
     if (!valueCondition) {
-      await this.errorHandler('condition', 'Вы должны согласиться');
+      await this.errorHandler('condition', FORM_ERRORS.agree);
     }
 
     const isError = !Object.values(this.state.error).every((e: string) => e === '');
 
-    if (isError) return;
+    if (isError) {
+      this.formRef.current?.reset();
+      return;
+    }
 
     const getStateGood = () => {
       return this.inputState1.current?.checked
@@ -223,7 +228,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
         />
 
         <div className="form-field">
-          <button type="submit">Отправить</button>
+          <button type="submit">Send</button>
         </div>
       </form>
     );

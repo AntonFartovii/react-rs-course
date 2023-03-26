@@ -35,6 +35,12 @@ export default class FormPage extends React.Component<IPageProps, IFormPageState
       cards: [...this.state.cards, card],
       message: 'Вы успешно добавили товар',
     });
+    setTimeout(() => {
+      this.setState({
+        ...this.state,
+        message: '',
+      });
+    }, 2000);
   };
 
   render() {

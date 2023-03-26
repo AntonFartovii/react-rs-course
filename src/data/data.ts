@@ -8,6 +8,7 @@ export interface ICard {
   price?: number;
   currency?: string;
   state?: string;
+  date?: string;
 }
 
 export const cardData: ICard[] = [

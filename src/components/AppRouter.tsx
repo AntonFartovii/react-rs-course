@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { IRoute } from '../routes';
 import { ABOUT_US, FORM_ROUTE, MAIN_ROUTE, PAGE_404 } from '../constants/pages';
 import MainPage from '../pages/MainPage';
 import AboutPage from '../pages/AboutPage';
@@ -14,12 +13,6 @@ interface IRouterProps {
 export default class AppRouter extends Component<IRouterProps> {
   constructor(props: IRouterProps) {
     super(props);
-  }
-
-  renderRoute(route: IRoute) {
-    const Component: React.ReactElement = route.Component;
-    // Component.props.showPageName = this.props.showPageName
-    return <Route key={route.path} path={route.path} element={Component} />;
   }
 
   render() {

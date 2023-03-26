@@ -1,11 +1,26 @@
 import React from 'react';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import FormPage from '../pages/FormPage';
+import FormCard from '../components/Form';
 
-describe('Form', () => {
-  test('Add card', () => {
+describe('Form', async () => {
+  test('Form render', async () => {
     render(<FormPage />);
     expect(screen.getByTestId('form')).toBeInTheDocument();
+  });
+
+  test('submit form', async () => {
+    const mockOnSubmitCard = vi.fn();
+    mockOnSubmitCard.mockClear();
+
+    render(<FormCard onSubmitCard={mockOnSubmitCard} />, {
+      container: document.body,
+    });
+
+    // fireEvent.submit(screen.getByRole('button'))
+    // fireEvent.click(screen.getByText(/Send/i))
+    // expect(mockOnSubmitCard).toHaveBeenCalledTimes(0);
+    // expect(screen.getByText(/You/i)).toBeDefined();
   });
 });

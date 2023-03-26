@@ -1,8 +1,7 @@
 import React, { ReactElement } from 'react';
-import { ABOUT_US, FORM_ROUTE, MAIN_ROUTE, PAGE_404 } from './constants/pages';
+import { ABOUT_US, FORM_ROUTE, MAIN_ROUTE } from './constants/pages';
 import MainPage from './pages/MainPage';
 import AboutPage from './pages/AboutPage';
-import Page404 from './pages/Page404';
 import FormPage from './pages/FormPage';
 
 export interface IRoute {
@@ -26,14 +25,5 @@ export const routesPages: IRoute[] = [
     name: 'Form page',
     path: FORM_ROUTE,
     Component: <FormPage />,
-  },
-];
-
-export const routesAll: IRoute[] = [
-  ...routesPages,
-  {
-    name: 'Page 404',
-    path: PAGE_404,
-    Component: <Page404 />,
   },
 ];

@@ -15,11 +15,11 @@ const CustomSelectElement = forwardRef(
       render(): React.ReactNode {
         return (
           <div className="form-field">
-            <label htmlFor="">Currency:</label>
+            <label htmlFor={this.label}>Currency:</label>
             <select id={this.label} name={this.label} ref={ref}>
               <option value="euro">EURO</option>
               <option value="rub">RUB</option>
-              <option value="urd">URD</option>
+              <option value="urd">USD</option>
             </select>
           </div>
         );
