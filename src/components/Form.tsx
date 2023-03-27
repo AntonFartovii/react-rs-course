@@ -108,7 +108,7 @@ export default class FormCard extends React.Component<IFormProps, IFormState> {
     const isError = !Object.values(this.state.error).every((e: string) => e === '');
 
     if (isError) {
-      this.formRef.current?.reset();
+      // this.formRef.current?.reset();
       return;
     }
 

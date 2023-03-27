@@ -35,9 +35,8 @@ describe('FormCard', () => {
     await user.tripleClick(input);
     await user.keyboard('bar');
     await submitFormCard();
-    expect(input).toHaveValue('');
+    expect(input).not.toHaveValue('');
   });
-
 
   test('should not be error message of condition', async () => {
     renderFormCard();
