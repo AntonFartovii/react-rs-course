@@ -1,37 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ICard } from '../data/data';
-import { Search } from './Search';
+import Search  from './Search';
 import Card from './Card';
 
-interface ICardsState {
-  filterText: string;
-}
+const Cards = ({cards}: {cards: ICard[]}) => {
+  const [filterText, setFilterText] = useState('')
 
-interface ICardsProps {
-  cards: ICard[];
-}
-
-export default class Cards extends React.Component<ICardsProps, ICardsState> {
-  constructor(props: ICardsProps) {
-    super(props);
-    this.state = {
-      filterText: '',
-    };
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-  }
-
-  handleFilterChange = (filterText: string) => {
-    this.setState({ filterText });
+  const handleFilterChange = (filterText: string) => {
+    setFilterText( filterText )
   };
 
-  componentDidMount(): void {
+  useEffect(() => {
     const filterText = localStorage.getItem('inputValue');
-    filterText && this.setState({ filterText });
-  }
+    filterText && setFilterText( filterText )
+  }, [])
 
-  render() {
-    const cards = this.props.cards;
-    const { filterText } = this.state;
 
     let filteredCards = cards;
     if (filterText.length > 0) {
@@ -44,7 +27,7 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
 
     return (
       <>
-        <Search onFilterChange={this.handleFilterChange} />
+        <Search onFilterChange={handleFilterChange} />
 
         <div className="card-container" key="1c">
           {filteredCards.map((card: ICard) => (
@@ -53,5 +36,6 @@ export default class Cards extends React.Component<ICardsProps, ICardsState> {
         </div>
       </>
     );
-  }
 }
+
+export default Cards

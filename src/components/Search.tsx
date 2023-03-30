@@ -1,51 +1,46 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-type ISearchProps = {
+interface ISearchProps {
   onFilterChange: (filterText: string) => void;
 };
 
-type ISearchState = {
-  input: string;
-};
+const Search = ({onFilterChange}: ISearchProps) => {
 
-export class Search extends React.Component<ISearchProps, ISearchState> {
-  constructor(props: ISearchProps) {
-    super(props);
-    this.state = {
-      input: '',
-    };
-    this.changeSearchInput = this.changeSearchInput.bind(this);
+  const [input, setInput] = useState('')
+  const valueRef = useRef('')
+
+  const changeSearchInput = ( event: ChangeEvent<HTMLInputElement> ) => {
+    setInput( event.target.value )
+    onFilterChange( event.target.value );
   }
 
-  changeSearchInput(event: ChangeEvent<HTMLInputElement>) {
-    this.setState({
-      ...this.state,
-      input: event.target.value,
-    });
-    this.props.onFilterChange(event.target.value);
-  }
+  useEffect(() => {
+    const input: string = localStorage.getItem('inputValue') || '';
+    input && setInput( input )
+  }, [])
 
-  componentDidMount(): void {
-    const input = localStorage.getItem('inputValue');
-    input && this.setState({ input });
-  }
+  useEffect(() => {
+    valueRef.current = input
+  }, [input]);
 
-  componentWillUnmount(): void {
-    localStorage.setItem('inputValue', this.state.input);
-  }
+  useEffect( () => {
+    return () => {
+      localStorage.setItem('inputValue', valueRef.current!);
+    }
+  }, [])
 
-  render() {
-    return (
-      <div className="search-bar">
-        <label htmlFor="my_search">Поиск:</label>
-        <input
-          id="my_search"
-          type="text"
-          placeholder="Search..."
-          value={this.state.input}
-          onChange={this.changeSearchInput}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="search-bar">
+      <label htmlFor="my_search">Поиск:</label>
+      <input
+        id="my_search"
+        type="text"
+        placeholder="Search..."
+        value={ input }
+        onChange={ changeSearchInput }
+      />
+    </div>
+  );
 }
+
+export default Search
