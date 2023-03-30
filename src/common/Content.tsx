@@ -4,12 +4,12 @@ interface IContentProps {
   children: ReactNode;
 }
 
-export default class Content extends React.Component<IContentProps> {
-  render() {
-    return (
+const Content = ({children}: IContentProps) => {
+  return (
       <main className="container container-main">
-        <div className="inner-wrapper">{this.props.children}</div>
+        <div className="inner-wrapper">{children}</div>
       </main>
     );
-  }
 }
+
+export default Content
