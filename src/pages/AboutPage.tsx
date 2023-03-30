@@ -4,7 +4,7 @@ import { IPageProps } from './MainPage';
 const AboutPage = ({showPageName}: IPageProps) => {
   const name: string = 'About us';
 
-  useEffect(()=> {
+  useEffect(() => {
     showPageName && showPageName( name )
   },[])
 

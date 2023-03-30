@@ -7,23 +7,25 @@ import FormPage from './pages/FormPage';
 export interface IRoute {
   name: string;
   path: string;
-  Component: ReactElement;
+  Component: (props: {showPageName?: (name: string) => void}) => JSX.Element;
 }
 
 export const routesPages: IRoute[] = [
   {
     name: 'Main page',
     path: MAIN_ROUTE,
-    Component: <MainPage />,
+    Component: ({showPageName}) => <MainPage showPageName={showPageName}/>,
   },
   {
     name: 'About us',
     path: ABOUT_US,
-    Component: <AboutPage />,
+    // Component: <AboutPage />,
+    Component: ({showPageName}) => <AboutPage showPageName={showPageName}/>,
   },
   {
     name: 'Form page',
     path: FORM_ROUTE,
-    Component: <FormPage />,
+    // Component: <FormPage />,
+    Component: ({showPageName}) => <FormPage showPageName={showPageName}/>,
   },
 ];

@@ -6,7 +6,7 @@ export interface IPageProps {
   showPageName?: (name: string) => void;
 }
 
-const MainPage = ({showPageName}: IPageProps) => {
+const MainPage = ({showPageName}: IPageProps): JSX.Element => {
   const name: string = 'Main page';
 
   useEffect(()=> {
