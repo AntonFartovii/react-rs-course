@@ -1,19 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IPageProps } from './MainPage';
 
-export default class Page404 extends React.Component<IPageProps> {
-  name: string;
-  constructor(props: IPageProps) {
-    super(props);
-    this.name = 'Страница 404';
-    this.showTest = this.showTest.bind(this);
-  }
+const Page404 = ({showPageName}: IPageProps) => {
+  const name: string = 'Page 404';
 
-  showTest() {
-    this.props.showPageName && this.props.showPageName(this.name);
-  }
+  useEffect(()=> {
+    showPageName && showPageName( name )
+  },[])
 
-  render() {
-    return <h1>Error 404!</h1>;
-  }
+  return (
+    <h1>Error 404!</h1>
+  )
 }
+
+export default Page404
+
