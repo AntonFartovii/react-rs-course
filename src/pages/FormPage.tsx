@@ -1,55 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import FormCard from '../components/Form';
 import Cards from '../components/Cards';
 import { ICard } from '../data/data';
 import { IPageProps } from './MainPage';
 
-interface IFormPageState {
-  cards: ICard[];
-  message: string;
-}
 
-export default class FormPage extends React.Component<IPageProps, IFormPageState> {
-  name: string;
+const FormPage = ({showPageName}: IPageProps) => {
+  const name: string = 'Form page'
 
-  constructor(props: IPageProps) {
-    super(props);
-    this.name = 'Form page';
-    this.showTest = this.showTest.bind(this);
-    this.state = {
-      cards: [],
-      message: '',
-    };
-  }
+  useEffect(()=> {
+    showPageName && showPageName( name )
+  },[])
 
-  showTest() {
-    this.props.showPageName && this.props.showPageName(this.name);
-  }
+  const [cards, setCards]: [ICard[], any] = useState([])
+  const [message, setMessage]: [string, any] = useState('')
 
-  componentDidMount(): void {
-    this.showTest();
-  }
-
-  handleCardAdd = (card: ICard) => {
-    this.setState({
-      cards: [...this.state.cards, card],
-      message: 'Вы успешно добавили товар',
-    });
+  const handleCardAdd = (card: ICard) => {
+    setCards([...cards, card]);
     setTimeout(() => {
-      this.setState({
-        ...this.state,
-        message: '',
-      });
+      setMessage( 'Вы успешно добавили товар' )
     }, 2000);
   };
 
-  render() {
-    return (
-      <>
-        <FormCard onSubmitCard={this.handleCardAdd} />
-        <div className="validation">{this.state.message}</div>
-        <Cards cards={this.state.cards} />
-      </>
-    );
-  }
+  return (
+    <>
+      <FormCard onSubmitCard={handleCardAdd} />
+      <div className="validation">{message}</div>
+      <Cards cards={cards} />
+    </>
+  )
 }
+
+export default FormPage
