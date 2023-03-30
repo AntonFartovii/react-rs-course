@@ -1,24 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IPageProps } from './MainPage';
 
-export default class AboutPage extends React.Component<IPageProps> {
-  name: string;
+const AboutPage = ({showPageName}: IPageProps) => {
+  const name: string = 'About us';
 
-  constructor(props: IPageProps) {
-    super(props);
-    this.name = 'About us';
-    this.showTest = this.showTest.bind(this);
-  }
+  useEffect(()=> {
+    showPageName && showPageName( name )
+  },[])
 
-  showTest() {
-    this.props.showPageName && this.props.showPageName(this.name);
-  }
-
-  componentDidMount(): void {
-    this.showTest();
-  }
-
-  render() {
-    return <h1>About us</h1>;
-  }
+  return (
+    <h1>About us</h1>
+  )
 }
+
+export default AboutPage
