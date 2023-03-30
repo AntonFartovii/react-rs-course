@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PAGE_404 } from '../constants/pages';
-import { IRoute, routesPages } from '../routes';
+import { IRoute, routesAll } from '../routes';
 
 interface IRouterProps {
   showPageName?: (name: string) => void;
 }
 
-const AppRouter = ({showPageName, ...props}: IRouterProps) => {
+const AppRouter = ({showPageName}: IRouterProps) => {
 
   const renderRoutes = (route: IRoute) => {
     const Component = route.Component
@@ -17,8 +17,8 @@ const AppRouter = ({showPageName, ...props}: IRouterProps) => {
   }
 
   return (
-      <Routes {...props}>
-        { routesPages.map( renderRoutes ) }
+      <Routes>
+        { routesAll.map( renderRoutes ) }
         <Route path="*" element={<Navigate to={PAGE_404} />}/>
       </Routes>
     );
