@@ -5,17 +5,14 @@ interface IHeaderProps {
   currentPage?: string;
 }
 
-export default class Header extends React.Component<IHeaderProps> {
-  constructor(props: IHeaderProps) {
-    super(props);
-  }
+const Header = ({currentPage}: IHeaderProps) => {
 
-  render() {
-    return (
-      <header>
-        <div>{this.props.currentPage && this.props.currentPage}</div>
-        <NavBar />
-      </header>
-    );
-  }
+  return (
+    <header>
+      <div>{currentPage && currentPage}</div>
+      <NavBar />
+    </header>
+  );
 }
+
+export default Header
