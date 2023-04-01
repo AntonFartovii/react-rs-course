@@ -30,9 +30,11 @@ const Cards = ({cards}: {cards: ICard[]}) => {
         <Search onFilterChange={handleFilterChange} />
 
         <div className="card-container" key="1c">
-          {filteredCards.map((card: ICard) => (
-            <Card key={card.id} card={card} />
-          ))}
+          {
+            filteredCards.map( (card: ICard) => (
+              <Card key={card.id} card={card} />
+            ))
+          }
         </div>
       </>
     );

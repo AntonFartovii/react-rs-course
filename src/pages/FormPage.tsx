@@ -15,11 +15,10 @@ const FormPage = ({showPageName}: IPageProps) => {
   const [cards, setCards]: [ICard[], any] = useState([])
   const [message, setMessage]: [string, any] = useState('')
 
-  const handleCardAdd = (card: ICard) => {
-    setCards([...cards, card]);
-    setTimeout(() => {
-      setMessage( 'Вы успешно добавили товар' )
-    }, 2000);
+  const handleCardAdd = async (card: ICard) => {
+    await setCards([...cards, card]);
+    await setMessage( 'Вы успешно добавили товар' )
+    setTimeout(() => { setMessage( '' )}, 2000);
   };
 
   return (
