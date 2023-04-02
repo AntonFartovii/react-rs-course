@@ -4,21 +4,22 @@ import Cards from '../components/Cards';
 import { ICard } from '../data/data';
 import { IPageProps } from './MainPage';
 
+const FormPage = ({ showPageName }: IPageProps) => {
+  const name = 'Form page';
 
-const FormPage = ({showPageName}: IPageProps) => {
-  const name: string = 'Form page'
+  useEffect(() => {
+    showPageName && showPageName(name);
+  }, []);
 
-  useEffect(()=> {
-    showPageName && showPageName( name )
-  },[])
-
-  const [cards, setCards]: [ICard[], any] = useState([])
-  const [message, setMessage]: [string, any] = useState('')
+  const [cards, setCards]: [ICard[], any] = useState([]);
+  const [message, setMessage]: [string, any] = useState('');
 
   const handleCardAdd = async (card: ICard) => {
     await setCards([...cards, card]);
-    await setMessage( 'Вы успешно добавили товар' )
-    setTimeout(() => { setMessage( '' )}, 2000);
+    await setMessage('Вы успешно добавили товар');
+    setTimeout(() => {
+      setMessage('');
+    }, 2000);
   };
 
   return (
@@ -27,7 +28,7 @@ const FormPage = ({showPageName}: IPageProps) => {
       <div className="validation">{message}</div>
       <Cards cards={cards} />
     </>
-  )
-}
+  );
+};
 
-export default FormPage
+export default FormPage;

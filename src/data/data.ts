@@ -19,7 +19,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/mrd1_0.png',
     price: 3000.0,
     currency: 'euro',
-    state: STATE_GOOD.NEW,
+    state: STATE_GOOD[0],
   },
   {
     id: '2',
@@ -28,7 +28,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/mrdt1_0.png',
     price: 500.0,
     currency: 'euro',
-    state: STATE_GOOD.OLD,
+    state: STATE_GOOD[1],
   },
   {
     id: '3',
@@ -37,7 +37,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/P14_20TE_Front view_1.png',
     price: 30300.0,
     currency: 'euro',
-    state: STATE_GOOD.NEW,
+    state: STATE_GOOD[1],
   },
   {
     id: '4',
@@ -46,7 +46,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/P14x_40TE_Front view_1.png',
     price: 500.0,
     currency: 'euro',
-    state: STATE_GOOD.NEW,
+    state: STATE_GOOD[1],
   },
   {
     id: '5',
@@ -55,7 +55,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/METSEPM8243_Front view_1.png',
     price: 300.0,
     currency: 'euro',
-    state: STATE_GOOD.OLD,
+    state: STATE_GOOD[1],
   },
   {
     id: '6',
@@ -64,7 +64,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/LSP2316.png',
     price: 1500.0,
     currency: 'euro',
-    state: STATE_GOOD.NEW,
+    state: STATE_GOOD[1],
   },
   {
     id: '7',
@@ -73,7 +73,7 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/A9Rfpfvew_14b3jl9_3bw.png',
     price: 3340.0,
     currency: 'euro',
-    state: STATE_GOOD.NEW,
+    state: STATE_GOOD[1],
   },
   {
     id: '8',
@@ -82,6 +82,6 @@ export const cardData: ICard[] = [
     imagePath: './src/assets/images/7sj46.jpg',
     price: 2300.0,
     currency: 'euro',
-    state: STATE_GOOD.NEW,
+    state: STATE_GOOD[0],
   },
 ];

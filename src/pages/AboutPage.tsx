@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
 import { IPageProps } from './MainPage';
 
-const AboutPage = ({showPageName}: IPageProps) => {
-  const name: string = 'About us';
+const AboutPage = ({ showPageName }: IPageProps) => {
+  const name = 'About us';
 
   useEffect(() => {
-    showPageName && showPageName( name )
-  },[])
+    showPageName && showPageName(name);
+  }, []);
 
-  return (
-    <h1>About us</h1>
-  )
-}
+  return <h1>About us</h1>;
+};
 
-export default AboutPage
+export default AboutPage;

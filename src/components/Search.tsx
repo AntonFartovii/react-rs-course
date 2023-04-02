@@ -2,32 +2,31 @@ import React, { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from
 
 interface ISearchProps {
   onFilterChange: (filterText: string) => void;
-};
+}
 
-const Search = ({onFilterChange}: ISearchProps) => {
+const Search = ({ onFilterChange }: ISearchProps) => {
+  const [input, setInput] = useState('');
+  const valueRef = useRef('');
 
-  const [input, setInput] = useState('')
-  const valueRef = useRef('')
-
-  const changeSearchInput = ( event: ChangeEvent<HTMLInputElement> ) => {
-    setInput( event.target.value )
-    onFilterChange( event.target.value );
-  }
+  const changeSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setInput(event.target.value);
+    onFilterChange(event.target.value);
+  };
 
   useEffect(() => {
     const input: string = localStorage.getItem('inputValue') || '';
-    input && setInput( input )
-  }, [])
+    input && setInput(input);
+  }, []);
 
   useEffect(() => {
-    valueRef.current = input
+    valueRef.current = input;
   }, [input]);
 
-  useEffect( () => {
+  useEffect(() => {
     return () => {
       localStorage.setItem('inputValue', valueRef.current!);
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div className="search-bar">
@@ -36,11 +35,11 @@ const Search = ({onFilterChange}: ISearchProps) => {
         id="my_search"
         type="text"
         placeholder="Search..."
-        value={ input }
-        onChange={ changeSearchInput }
+        value={input}
+        onChange={changeSearchInput}
       />
     </div>
   );
-}
+};
 
-export default Search
+export default Search;

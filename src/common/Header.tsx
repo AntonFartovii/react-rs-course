@@ -5,14 +5,13 @@ interface IHeaderProps {
   currentPage?: string;
 }
 
-const Header = ({currentPage}: IHeaderProps) => {
-
+const Header = ({ currentPage }: IHeaderProps) => {
   return (
     <header>
       <div>{currentPage && currentPage}</div>
       <NavBar />
     </header>
   );
-}
+};
 
-export default Header
+export default Header;

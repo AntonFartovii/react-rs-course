@@ -6,16 +6,14 @@ export interface IPageProps {
   showPageName?: (name: string) => void;
 }
 
-const MainPage = ({showPageName}: IPageProps): JSX.Element => {
-  const name: string = 'Main page';
+const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
+  const name = 'Main page';
 
-  useEffect(()=> {
-    showPageName && showPageName( name )
-  },[])
+  useEffect(() => {
+    showPageName && showPageName(name);
+  }, []);
 
-  return (
-    <Cards cards={cardData} />
-    )
-}
+  return <Cards cards={cardData} />;
+};
 
-export default MainPage
+export default MainPage;

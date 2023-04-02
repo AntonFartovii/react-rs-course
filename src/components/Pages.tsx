@@ -4,20 +4,20 @@ import Content from '../common/Content';
 import AppRouter from './AppRouter';
 
 const Pages = () => {
-  const [namePage, setNamePage]: [string, any] = useState('')
+  const [namePage, setNamePage]: [string, any] = useState('');
 
   const handlePageNameChange = (name: string) => {
-    setNamePage( name );
-  }
+    setNamePage(name);
+  };
 
   return (
-      <>
-        <Header currentPage={namePage} />
-        <Content>
-          <AppRouter showPageName={handlePageNameChange} />
-        </Content>
-      </>
-    );
-}
+    <>
+      <Header currentPage={namePage} />
+      <Content>
+        <AppRouter showPageName={handlePageNameChange} />
+      </Content>
+    </>
+  );
+};
 
-export default Pages
+export default Pages;
