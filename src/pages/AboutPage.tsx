@@ -6,7 +6,7 @@ const AboutPage = ({ showPageName }: IPageProps) => {
 
   useEffect(() => {
     showPageName && showPageName(name);
-  }, []);
+  }, [showPageName]);
 
   return <h1>About us</h1>;
 };

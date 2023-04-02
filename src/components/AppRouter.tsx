@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PAGE_404 } from '../constants/pages';
 import { IRoute, routesAll } from '../routes';

@@ -4,7 +4,7 @@ import Content from '../common/Content';
 import AppRouter from './AppRouter';
 
 const Pages = () => {
-  const [namePage, setNamePage]: [string, any] = useState('');
+  const [namePage, setNamePage] = useState<string>('');
 
   const handlePageNameChange = (name: string) => {
     setNamePage(name);

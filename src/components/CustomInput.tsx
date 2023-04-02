@@ -2,7 +2,6 @@ import React from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 
 export interface ICustomTextInputProps {
-  onChange?: () => void;
   name: string;
   error?: string;
   type: string;
@@ -27,7 +26,7 @@ const CustomInput = ({ name, error, type, refProp, values }: ICustomTextInputPro
         {...refProp(name, {
           required: 'Field is empty',
           minLength: 0,
-          validate: (value) => true,
+          validate: () => true,
         })}
       />
     ),
@@ -41,7 +40,7 @@ const CustomInput = ({ name, error, type, refProp, values }: ICustomTextInputPro
               value={radio}
               {...refProp('state', {
                 required: 'Choose please one option',
-                validate: (value) => true,
+                validate: () => true,
               })}
             />
             <label htmlFor="radio1">{radio}</label>
@@ -95,7 +94,7 @@ const CustomInput = ({ name, error, type, refProp, values }: ICustomTextInputPro
           value="agree"
           {...refProp(name, {
             required: 'You must to agree',
-            validate: (value) => true,
+            validate: () => true,
           })}
         />
         I agree to the terms and conditions
@@ -109,7 +108,7 @@ const CustomInput = ({ name, error, type, refProp, values }: ICustomTextInputPro
           {...refProp(name, {
             required: 'Field is empty',
             minLength: 0,
-            validate: (value) => true,
+            validate: () => true,
           })}
         >
           <option></option>

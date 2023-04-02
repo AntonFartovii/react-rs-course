@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 interface ISearchProps {
   onFilterChange: (filterText: string) => void;

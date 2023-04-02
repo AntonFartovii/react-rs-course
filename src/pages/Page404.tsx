@@ -6,7 +6,7 @@ const Page404 = ({ showPageName }: IPageProps) => {
 
   useEffect(() => {
     showPageName && showPageName(name);
-  }, []);
+  }, [showPageName]);
 
   return <h1>Error 404!</h1>;
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Cards from '../components/Cards';
 import { cardData } from '../data/data';
 
@@ -11,7 +11,7 @@ const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
 
   useEffect(() => {
     showPageName && showPageName(name);
-  }, []);
+  }, [showPageName]);
 
   return <Cards cards={cardData} />;
 };

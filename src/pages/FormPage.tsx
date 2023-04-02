@@ -9,10 +9,10 @@ const FormPage = ({ showPageName }: IPageProps) => {
 
   useEffect(() => {
     showPageName && showPageName(name);
-  }, []);
+  }, [showPageName]);
 
-  const [cards, setCards]: [ICard[], any] = useState([]);
-  const [message, setMessage]: [string, any] = useState('');
+  const [cards, setCards] = useState<ICard[]>([]);
+  const [message, setMessage] = useState<string>('');
 
   const handleCardAdd = async (card: ICard) => {
     await setCards([...cards, card]);
