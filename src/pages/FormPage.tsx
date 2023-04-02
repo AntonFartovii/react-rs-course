@@ -25,7 +25,7 @@ const FormPage = ({ showPageName }: IPageProps) => {
   return (
     <>
       <FormCard onSubmitCard={handleCardAdd} />
-      <div className="validation">{message}</div>
+      {message && <div className="message-card">{message}</div>}
       <Cards cards={cards} />
     </>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import CustomInput from './CustomInput';
-import { STATE_GOOD } from '../constants/pages';
+import { CURRENCY, STATE_GOOD } from '../constants/pages';
 import { ICard } from '../data/data';
 
 interface IFormProps {
@@ -15,6 +15,7 @@ interface IForm {
   file?: string | FileList;
   price?: string | number;
   state?: string;
+  currency?: string
 }
 
 const FormCard = ({ onSubmitCard }: IFormProps) => {
@@ -36,6 +37,8 @@ const FormCard = ({ onSubmitCard }: IFormProps) => {
       imagePath: data.file ? URL.createObjectURL(data.file[0] as File) : '',
       price: data.price,
       state: data.state,
+      currency: data.currency,
+      date: data.date
     };
     onSubmitCard(newCard);
     reset();
@@ -81,7 +84,7 @@ const FormCard = ({ onSubmitCard }: IFormProps) => {
             <CustomInput
               name="currency"
               type="select"
-              values={['EURO', 'RUB', 'USD']}
+              values={CURRENCY}
               refProp={register}
               error={errors?.currency?.message?.toString()}
             />

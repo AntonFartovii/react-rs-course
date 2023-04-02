@@ -5,11 +5,4 @@ export const FORM_ROUTE = '/form';
 
 export const STATE_GOOD = ['new', 'old'];
 
-export enum FORM_ERRORS {
-  length_0 = 'length cannot be 0',
-  agree = 'You must agree',
-  empty = 'file is empty',
-  wrong_file = 'file type is not image',
-  wrong_date = 'incorrect date',
-  not_chosen = 'should be choose',
-}
+export const CURRENCY = ['EURO', 'RUB', 'USD'];

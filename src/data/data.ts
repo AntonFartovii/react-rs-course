@@ -20,6 +20,7 @@ export const cardData: ICard[] = [
     price: 3000.0,
     currency: 'euro',
     state: STATE_GOOD[0],
+    date: '2022-03-21'
   },
   {
     id: '2',
@@ -29,6 +30,7 @@ export const cardData: ICard[] = [
     price: 500.0,
     currency: 'euro',
     state: STATE_GOOD[1],
+    date: '2022-03-21'
   },
   {
     id: '3',
@@ -38,6 +40,7 @@ export const cardData: ICard[] = [
     price: 30300.0,
     currency: 'euro',
     state: STATE_GOOD[1],
+    date: '2022-03-21'
   },
   {
     id: '4',
@@ -47,6 +50,7 @@ export const cardData: ICard[] = [
     price: 500.0,
     currency: 'euro',
     state: STATE_GOOD[1],
+    date: '2022-03-21'
   },
   {
     id: '5',
@@ -56,6 +60,7 @@ export const cardData: ICard[] = [
     price: 300.0,
     currency: 'euro',
     state: STATE_GOOD[1],
+    date: '2022-03-21'
   },
   {
     id: '6',
@@ -65,6 +70,7 @@ export const cardData: ICard[] = [
     price: 1500.0,
     currency: 'euro',
     state: STATE_GOOD[1],
+    date: '2022-03-21'
   },
   {
     id: '7',
@@ -74,6 +80,7 @@ export const cardData: ICard[] = [
     price: 3340.0,
     currency: 'euro',
     state: STATE_GOOD[1],
+    date: '2022-03-21'
   },
   {
     id: '8',
@@ -83,5 +90,6 @@ export const cardData: ICard[] = [
     price: 2300.0,
     currency: 'euro',
     state: STATE_GOOD[0],
+    date: '2022-03-21'
   },
 ];

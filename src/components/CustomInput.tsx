@@ -77,7 +77,6 @@ const CustomInput = ({ name, error, type, refProp, values }: ICustomTextInputPro
         type="file"
         {...refProp(name, {
           required: 'There is not file',
-          // validate: value => true
           validate: (value) => {
             if (!/^image/.test(value[0].type)) {
               return 'This file is not image type';
