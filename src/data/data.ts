@@ -2,10 +2,10 @@ import { STATE_GOOD } from '../constants/pages';
 
 export interface ICard {
   id: string;
-  title: string;
+  title?: string;
   description?: string;
   imagePath?: string;
-  price?: number;
+  price?: number | string;
   currency?: string;
   state?: string;
   date?: string;

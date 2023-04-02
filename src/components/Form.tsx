@@ -2,20 +2,41 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import CustomInputElement from './CustomInputElement';
 import { STATE_GOOD } from '../constants/pages';
+import { ICard } from '../data/data';
+
+interface IFormProps {
+  onSubmitCard: (card: ICard) => void;
+};
 
 interface IForm {
   title?: string;
   description?: string;
   date?: string;
   file?: string | FileList;
+  price?: string | number;
+  state?: string;
 }
 
-const FormCard = () => {
+const FormCard = ({onSubmitCard}: IFormProps) => {
   const {register, handleSubmit, reset, formState: { errors }} = useForm({
-    mode: 'onSubmit', reValidateMode: 'onSubmit' })
+    mode: 'onSubmit',
+    reValidateMode: 'onSubmit'
+  })
 
   const onSubmit = (data: IForm) => {
     console.log(data);
+
+    const newCard: ICard = {
+      id: `${new Date().getTime()}`,
+      title: data.title,
+      description: data.description,
+      imagePath: data.file ? URL.createObjectURL(data.file[0] as File) : '',
+      price: data.price,
+      state: data.state,
+    };
+    console.log(newCard);
+    onSubmitCard(newCard);
+
     reset()
   }
 
@@ -36,35 +57,8 @@ const FormCard = () => {
           </div>
         </div>
         <div className="form-field">
-          <div className="row">
-            <div className="column-left">
-              <input
-                id="radio1"
-                type="radio"
-                value={STATE_GOOD.OLD}
-                {
-                  ...register('state', {
-                    required: 'Choose please one option'
-                  })
-                }
-              />
-              <label htmlFor="radio1">б/у</label>
-            </div>
-            <div className="column-right">
-              <input
-                id="radio2"
-                type="radio"
-                value={STATE_GOOD.NEW}
-                {
-                  ...register('state', {
-                    required: 'Choose please one option'
-                  })
-                }
-              />
-              <label htmlFor="radio1">новый</label>
-            </div>
-          </div>
-          <div className="validation">{errors.state?.message?.toString()}</div>
+
+          <CustomInputElement name="state" values={STATE_GOOD} type="radio" refProp={register} error={errors?.state?.message?.toString()}/>
         </div>
 
         <CustomInputElement name="condition" type="checkbox" refProp={register} error={errors?.condition?.message?.toString()}/>

@@ -3,10 +3,10 @@ export const ABOUT_US = '/about_us';
 export const PAGE_404 = '/404';
 export const FORM_ROUTE = '/form';
 
-export enum STATE_GOOD {
-  NEW = 'новое',
-  OLD = 'б/у',
-}
+export const STATE_GOOD = [
+  'new',
+  'old'
+]
 
 export enum FORM_ERRORS {
   length_0 = 'length cannot be 0',

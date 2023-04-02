@@ -1,6 +1,7 @@
 import React, { ForwardedRef, forwardRef } from 'react';
 import { FieldValues, UseFormRegister } from 'react-hook-form';
 import { logDOM } from '@testing-library/dom';
+import { STATE_GOOD } from '../constants/pages';
 
 export interface ICustomTextInputProps {
   onChange?: () => void;
@@ -27,55 +28,65 @@ const CustomInputElement = (
                 {...refProp(name, {
                   required: 'Field is empty',
                   minLength: 0,
-                  validate: value => {return ''}
+                  // validate: value => {return ''}
                 })}
       />,
-      radio: <input
-                id={name}
-                type="radio"
-                {...refProp(name, {
-                  required: '',
-                  validate: value => {return ''}
-                })} />,
+      radio: <div className="row">
+                {values?.map((radio) =>
+                    <div key={radio}>
+                      <input
+                        id={radio}
+                        type="radio"
+                        value={radio}
+                        {
+                          ...refProp('state', {
+                            required: 'Choose please one option',
+                            // validate: value => {return ''}
+                          })
+                        }
+                      />
+                      <label htmlFor="radio1">{radio}</label>
+                    </div>
+                )}
+              </div>,
       number: <input
                 id={name}
                 type="number"
                 {...refProp(name, {
                   required: 'Field is empty',
                   minLength: 0,
-                  validate: value => {return ''}
                 })} />,
       date: <input
                 id={name}
                 type="date"
                 {...refProp(name, {
                   required: 'Date in not chosen',
-                  validate: value => {
-                    const date = new Date().toDateString()
-                    return Date.parse(value) < Date.parse( date ) || `Must be < ${date}`
-                  }})} />,
+                  // validate: value => {
+                  //   const date = new Date().toDateString()
+                  //   return Date.parse(value) <= Date.parse( date ) || `Must be <= ${date}`
+                  // }
+                })} />,
       file: <input
                 id={name}
                 type="file"
                 {...refProp(name, {
                   required: 'There is not file',
-                  validate: (value) => {
-                    if (!/^image/.test(value[0].type)) {
-                      return 'This file is not image type';
-                    }
-                  }
+                  // validate: (value) => {
+                  //   if (!/^image/.test(value[0].type)) {
+                  //     return 'This file is not image type';
+                  //   }
+                  // }
                 })} />,
       checkbox: (
                 <>
-                  I agree to the terms and conditions
                   <input
                     id={name}
                     type="checkbox"
                     value="agree"
                     {...refProp(name,{
-                      required: 'You must to agree',
-                      validate: value => {return ''}
+                      required: 'You must to agree'
                     })} />
+                  I agree to the terms and conditions
                 </>
       ),
     };
