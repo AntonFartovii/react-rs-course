@@ -6,7 +6,7 @@ interface ISearchProps {
 
 const Search = ({ onFilterChange }: ISearchProps) => {
   const [input, setInput] = useState('');
-  const valueRef = useRef('');
+  const valueRef = useRef<string>('');
 
   const changeSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);

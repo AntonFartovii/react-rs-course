@@ -12,9 +12,7 @@ const Card = ({ card }: ICardProps) => {
       <div className="card-body">
         <h2 className="card-title">{card.title}</h2>
         <p className="card-description">{card.description}</p>
-        <p className="card-date">
-          {card.date && `Date produce: ${card.date}`}
-        </p>
+        <p className="card-date">{card.date && `Date produce: ${card.date}`}</p>
         <p className="card-price">
           {card.price && `Price: ${card.price}`} {card.currency ?? ''}
         </p>

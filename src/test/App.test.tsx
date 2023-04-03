@@ -22,12 +22,11 @@ describe('App', () => {
     description: 'Card description',
     price: 10,
     currency: 'USD',
-    state: STATE_GOOD.OLD,
+    state: STATE_GOOD[0],
   };
 
   test('renders an input element', async () => {
     render(<Cards cards={data} />);
-    // expect(screen.getByTestId('card_4')).toBe()
   });
 
   test('should display all card properties', async () => {
@@ -61,26 +60,10 @@ describe('App', () => {
     expect(cards.length).toBe(data.length);
   });
 
-  // test('Main page title', async () => {
-  //   render(<MainPage />);
-  //   // expect(screen.getByText(/Main page/i)).toBeDefined()
-  //   expect(screen.getByText(/Main page/i)).toBeInTheDocument();
-  // });
-  //
-
   test('About page title', async () => {
     render(<AboutPage />);
     expect(screen.getByText(/About us/i)).toBeDefined();
   });
-
-  // test('Main page h1', () => {
-  //   render(
-  //     <BrowserRouter>
-  //       <MainPage />
-  //     </BrowserRouter>
-  //   );
-  //   expect(screen.getByText(/Main page/i)).toBeTruthy();
-  // });
 
   test('About page h1', () => {
     render(
