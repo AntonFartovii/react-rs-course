@@ -19,7 +19,7 @@ const Cards = ({ cards }: { cards: ICard[] }) => {
   if (filterText.length > 0) {
     filteredCards = cards.filter(
       (card: ICard) =>
-        card.title.toLowerCase().includes(filterText.toLowerCase()) ||
+        card.title?.toLowerCase().includes(filterText.toLowerCase()) ||
         card.description?.toLowerCase().includes(filterText.toLowerCase())
     );
   }

@@ -15,7 +15,7 @@ interface IForm {
   file?: string | FileList;
   price?: string | number;
   state?: string;
-  currency?: string
+  currency?: string;
 }
 
 const FormCard = ({ onSubmitCard }: IFormProps) => {
@@ -38,7 +38,7 @@ const FormCard = ({ onSubmitCard }: IFormProps) => {
       price: data.price,
       state: data.state,
       currency: data.currency,
-      date: data.date
+      date: data.date,
     };
     onSubmitCard(newCard);
     reset();

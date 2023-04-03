@@ -18,9 +18,5 @@ describe('Form', async () => {
       container: document.body,
     });
 
-    // fireEvent.submit(screen.getByRole('button'))
-    // fireEvent.click(screen.getByText(/Send/i))
-    // expect(mockOnSubmitCard).toHaveBeenCalledTimes(0);
-    // expect(screen.getByText(/You/i)).toBeDefined();
   });
 });

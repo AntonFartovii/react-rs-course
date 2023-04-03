@@ -36,7 +36,6 @@ body {
 header {
   width: 100%;
   display: flex;
-  /* border-bottom: 1px solid green; */
   box-shadow: 0px 0px 10px rgba(28, 135, 83, 0.5);
   justify-content: space-around;
   align-items: center;
@@ -61,7 +60,6 @@ header {
   }
 
   .header-link.active {
-    /*border-bottom: 5px solid green;*/
     box-shadow: 0px -4px 10px rgba(28, 135, 83, 0.5);
   }
 
@@ -256,10 +254,6 @@ main {
     font-weight: 500;
     height: 15px;
     font-size: 15px;
-    /*position: absolute;*/
-    /*left: 0%;*/
-    /*width: 100%;*/
-    /*bottom: 0%;*/
   }
 
   .message-card {
