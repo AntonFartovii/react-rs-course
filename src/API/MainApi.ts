@@ -14,11 +14,10 @@ export interface IFilm {
   wikiUrl: string;
 }
 
-export const fetchFilms = async (limit = 15) => {
+export const fetchFilms = async ({...params}) => {
+
   const { data } = await $host.get('/', {
-    params: {
-      limit,
-    },
+    params
   });
   return data;
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { fetchFilms, IFilm } from '../API/MainApi';
-import { useFetching } from '../hooks/useFetching';
 import Films from '../components/Films';
 import Search from '../components/Search';
 
@@ -8,18 +7,23 @@ export interface IPageProps {
   showPageName?: (name: string) => void;
 }
 
+interface IFilter {
+  hairColor?: string,
+  limit?: number
+}
+
 const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   const name = 'Main page';
   const [films, setFilms] = useState<IFilm[]>([]);
   const [filterText, setFilterText] = useState('');
-
-  const [fetchData, isLoading] = useFetching(async () => {
-    const data = await fetchFilms();
-    setFilms(data);
-  });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    fetchData();
+    setIsLoading(true);
+    const filter: IFilter = {limit: 15}
+    if ( filterText ) filter.hairColor = filterText
+    fetchFilms(filter).then((data) =>setFilms(data));
+    setIsLoading(false);
   }, [filterText]);
 
   useEffect(() => {
