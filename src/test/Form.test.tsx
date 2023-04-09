@@ -17,6 +17,5 @@ describe('Form', async () => {
     render(<FormCard onSubmitCard={mockOnSubmitCard} />, {
       container: document.body,
     });
-
   });
 });

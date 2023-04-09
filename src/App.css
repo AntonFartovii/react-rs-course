@@ -31,6 +31,11 @@ body {
 .inner-wrapper {
   max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
 
 header {
@@ -115,16 +120,20 @@ main {
     margin-bottom: 10px;
   }
 
+
   .search-bar {
+    padding: 0 20%;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 20px;
-    margin: 20px auto;
-    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
     padding: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
   }
 
   .search-bar input {
@@ -271,5 +280,26 @@ main {
     width: 100%;
     margin-right: 0;
     margin-bottom: 10px;
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: #FF3D00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

@@ -5,12 +5,15 @@ interface ISearchProps {
 }
 
 const Search = ({ onFilterChange }: ISearchProps) => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState<string>('');
   const valueRef = useRef<string>('');
 
   const changeSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     setInput(event.target.value);
-    onFilterChange(event.target.value);
+  };
+
+  const handlerSearch = async () => {
+    onFilterChange(valueRef.current);
   };
 
   useEffect(() => {
@@ -38,6 +41,9 @@ const Search = ({ onFilterChange }: ISearchProps) => {
         value={input}
         onChange={changeSearchInput}
       />
+      <button className="btn-send" onClick={handlerSearch}>
+        Send
+      </button>
     </div>
   );
 };
