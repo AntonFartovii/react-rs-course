@@ -17,14 +17,17 @@ const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   const name = 'Main page';
   const [films, setFilms] = useState<IFilm[]>([]);
   const [filterText, setFilterText] = useState('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
     const filter: IFilter = { limit: 15 };
     if (filterText) filter.name = filterText;
-    fetchFilms(filter).then((data) => setFilms(data));
-    setIsLoading(false);
+    fetchFilms(filter).then((data) => {
+      setFilms(data);
+      setIsLoading(false);
+    });
+
   }, [filterText]);
 
   useEffect(() => {

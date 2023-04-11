@@ -44,9 +44,6 @@ const Search = ({ onFilterChange }: ISearchProps) => {
         onChange={changeSearchInput}
         onKeyDown={handlerSearch}
       />
-      <button className="btn-send" onClick={() => {}}>
-        Send
-      </button>
     </div>
   );
 };

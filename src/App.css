@@ -134,6 +134,7 @@ main {
     padding: 10px;
     flex-direction: row;
     flex-wrap: nowrap;
+    max-width: 800px;
   }
 
   .search-bar input {
@@ -275,6 +276,7 @@ main {
     border: 1px solid red;
     border-radius: 5px;
   }
+
 @media screen and (max-width: 600px) {
   .column-left, .column-right {
     width: 100%;
