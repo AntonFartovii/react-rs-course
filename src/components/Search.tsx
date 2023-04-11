@@ -12,8 +12,10 @@ const Search = ({ onFilterChange }: ISearchProps) => {
     setInput(event.target.value);
   };
 
-  const handlerSearch = async () => {
-    onFilterChange(valueRef.current);
+  const handlerSearch = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      onFilterChange(valueRef.current);
+    }
   };
 
   useEffect(() => {
@@ -37,11 +39,12 @@ const Search = ({ onFilterChange }: ISearchProps) => {
       <input
         id="my_search"
         type="text"
-        placeholder="Search..."
+        placeholder="Searching by character name..."
         value={input}
         onChange={changeSearchInput}
+        onKeyDown={handlerSearch}
       />
-      <button className="btn-send" onClick={handlerSearch}>
+      <button className="btn-send" onClick={() => {}}>
         Send
       </button>
     </div>

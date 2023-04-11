@@ -9,6 +9,7 @@ export interface IPageProps {
 
 interface IFilter {
   hairColor?: string;
+  name?: string;
   limit?: number;
 }
 
@@ -21,7 +22,7 @@ const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   useEffect(() => {
     setIsLoading(true);
     const filter: IFilter = { limit: 15 };
-    if (filterText) filter.hairColor = filterText;
+    if (filterText) filter.name = filterText;
     fetchFilms(filter).then((data) => setFilms(data));
     setIsLoading(false);
   }, [filterText]);

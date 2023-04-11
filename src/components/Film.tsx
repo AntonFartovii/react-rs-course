@@ -20,7 +20,8 @@ const Film = ({ card, openModal }: ICardProps) => {
     >
       <img src={card.image} alt={card.firstEpisode} className="card-image" />
       <div className="card-body">
-        <h2 className="card-title">{card.firstEpisode}</h2>
+        <h2 className="card-name">{card.name}</h2>
+        <h3 className="card-title">{card.firstEpisode}</h3>
         <p className="card-description">{card.occupation}</p>
         <p className="card-price">{card.wikiUrl && <a href={card.wikiUrl}>Wiki</a>}</p>
         <p className="card-state">{card.voicedBy && `State: ${card.voicedBy}`}</p>
