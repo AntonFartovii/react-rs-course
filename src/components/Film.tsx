@@ -3,11 +3,17 @@ import { IFilm } from '../API/MainApi';
 
 interface ICardProps {
   card: IFilm;
+  openModal: (id: number) => void
 }
 
-const Film = ({ card }: ICardProps) => {
+const Film = ({ card, openModal }: ICardProps) => {
+
+  function handleClick() {
+    openModal( card.id )
+  }
+
   return (
-    <div key={card.id} id={`card_${card.id}`} className="card" data-testid={`card_${card.id}`}>
+    <div onClick={handleClick} key={card.id} id={`card_${card.id}`} className="card" data-testid={`card_${card.id}`}>
       <img src={card.image} alt={card.firstEpisode} className="card-image" />
       <div className="card-body">
         <h2 className="card-title">{card.firstEpisode}</h2>
