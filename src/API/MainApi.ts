@@ -14,10 +14,9 @@ export interface IFilm {
   wikiUrl: string;
 }
 
-export const fetchFilms = async ({...params}) => {
-
+export const fetchFilms = async ({ ...params }) => {
   const { data } = await $host.get('/', {
-    params
+    params,
   });
   return data;
 };

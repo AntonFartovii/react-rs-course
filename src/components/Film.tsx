@@ -3,17 +3,21 @@ import { IFilm } from '../API/MainApi';
 
 interface ICardProps {
   card: IFilm;
-  openModal: (id: number) => void
+  openModal: (content: JSX.Element) => void;
 }
 
 const Film = ({ card, openModal }: ICardProps) => {
-
   function handleClick() {
-    openModal( card.id )
+    openModal(content);
   }
-
-  return (
-    <div onClick={handleClick} key={card.id} id={`card_${card.id}`} className="card" data-testid={`card_${card.id}`}>
+  const content = (
+    <div
+      onClick={handleClick}
+      key={card.id}
+      id={`card_${card.id}`}
+      className="card"
+      data-testid={`card_${card.id}`}
+    >
       <img src={card.image} alt={card.firstEpisode} className="card-image" />
       <div className="card-body">
         <h2 className="card-title">{card.firstEpisode}</h2>
@@ -23,6 +27,8 @@ const Film = ({ card, openModal }: ICardProps) => {
       </div>
     </div>
   );
+
+  return content;
 };
 
 export default Film;
