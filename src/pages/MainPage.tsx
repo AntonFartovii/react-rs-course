@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Characters from '../components/Characters';
 import Search from '../components/Search';
 import { characterAPI } from '../services/CharactersService';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 export interface IPageProps {
   showPageName?: (name: string) => void;
@@ -9,7 +11,8 @@ export interface IPageProps {
 
 const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   const name = 'Main page';
-  const [filterName, setFilterName] = useState<string>('');
+  const searchTitle = useSelector((state: RootState) => state.searchReducer.searchTitle);
+  const [filterName, setFilterName] = useState<string>(searchTitle);
 
   const { data, error, isLoading } = characterAPI.useFetchAllCharactersQuery(filterName);
 
