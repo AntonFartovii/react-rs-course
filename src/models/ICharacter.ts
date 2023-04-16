@@ -1,13 +1,20 @@
 export interface ICharacter {
-  firstEpisode?: string;
-  gender?: string;
-  hairColor?: string;
   id?: number;
-  image?: string;
   name?: string;
-  occupation?: string;
-  relatives?: string[];
+  status: string;
+  species: string;
+  type: string;
+  gender?: string;
+  origin: {
+    name: string,
+    url: string
+  },
+  location: {
+    name: string,
+    url: string
+  },
+  image?: string;
   url?: string;
-  voicedBy?: string;
-  wikiUrl?: string;
+  episode: string[];
+  created: string;
 }

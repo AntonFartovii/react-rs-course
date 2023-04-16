@@ -18,13 +18,25 @@ const Character = ({ card, openModal }: ICardProps) => {
       className="card"
       data-testid={`card_${card.id}`}
     >
-      <img src={card.image} alt={card.firstEpisode} className="card-image" />
+      <img src={card.image && card.image} alt={card.name && card.name} className="card-image" />
       <div className="card-body">
-        <h2 className="card-name">{card.name}</h2>
-        <h3 className="card-title">{card.firstEpisode}</h3>
-        <p className="card-description">{card.occupation}</p>
-        <p className="card-price">{card.wikiUrl && <a href={card.wikiUrl}>Wiki</a>}</p>
-        <p className="card-state">{card.voicedBy && `State: ${card.voicedBy}`}</p>
+        <h2 className="card-name">{card.name &&card.name}</h2>
+        <h3 className="card-status">{card.status && card.status}</h3>
+        <p className="card-species">{card.species && card.species}</p>
+        <h5 className="card-gender">{card.gender && card.gender}</h5>
+        <p className="card-location">
+          <a href={card.location.url && card.location.url} target="_blank">
+            {card.location.name && card.location.name}
+          </a>
+        </p>
+        <p className="card-origin">
+          <a href={card.origin.url && card.origin.url} target="_blank">
+            {card.origin.name && card.origin.name}
+          </a>
+        </p>
+        <p className="card-created">
+            {card.created && card.created}
+        </p>
       </div>
     </div>
   );
