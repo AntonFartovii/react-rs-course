@@ -11,7 +11,7 @@ export interface IPageProps {
 
 const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   const name = 'Main page';
-  const searchTitle = useSelector((state: RootState) => state.searchReducer.searchTitle);
+  const { searchTitle } = useSelector((state: RootState) => state.searchReducer);
   const [filterName, setFilterName] = useState<string>(searchTitle);
 
   const { data, error, isLoading } = characterAPI.useFetchAllCharactersQuery(filterName);

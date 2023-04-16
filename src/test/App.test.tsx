@@ -11,6 +11,7 @@ import { cardData } from '../data/data';
 import Content from '../common/Content';
 import Card from '../components/Card';
 import { STATE_GOOD } from '../constants/pages';
+import { renderWithProviders } from './test-utils';
 
 describe('App', () => {
   const data = cardData;
@@ -26,7 +27,7 @@ describe('App', () => {
   };
 
   test('renders an input element', async () => {
-    render(<Cards cards={data} />);
+    renderWithProviders(<Cards cards={data} />);
   });
 
   test('should display all card properties', async () => {
@@ -39,34 +40,33 @@ describe('App', () => {
   });
 
   test('App', async () => {
-    render(<App />);
+    renderWithProviders(<App />);
     const headerElement = screen.getByRole('banner');
     expect(headerElement).toBeInTheDocument();
   });
 
   test('navigates to 404 page when route is not found', () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/unknown']}>
         <AppRouter />
       </MemoryRouter>
     );
-
     expect(screen.getByText('Error 404!')).toBeInTheDocument();
   });
 
   test('Cards', async () => {
-    render(<Cards cards={data} />);
+    renderWithProviders(<Cards cards={data} />);
     const cards = document.querySelectorAll('.card');
     expect(cards.length).toBe(data.length);
   });
 
   test('About page title', async () => {
-    render(<AboutPage />);
+    renderWithProviders(<AboutPage />);
     expect(screen.getByText(/About us/i)).toBeDefined();
   });
 
   test('About page h1', () => {
-    render(
+    renderWithProviders(
       <BrowserRouter>
         <AboutPage />
       </BrowserRouter>
@@ -75,7 +75,7 @@ describe('App', () => {
   });
 
   test('Error 404 page h1', () => {
-    render(
+    renderWithProviders(
       <BrowserRouter>
         <Page404 />
       </BrowserRouter>

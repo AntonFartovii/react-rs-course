@@ -1,21 +1,24 @@
 import React from 'react';
-import { describe, expect, test, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import FormPage from '../pages/FormPage';
+import { describe, expect, test } from 'vitest';
+import { screen } from '@testing-library/react';
+import { renderWithProviders } from './test-utils';
 import FormCard from '../components/Form';
 
-describe('Form', async () => {
-  test('Form render', async () => {
-    render(<FormPage />);
-    expect(screen.getByTestId('form')).toBeInTheDocument();
+describe('Form test', () => {
+  test('render Form component', async () => {
+    renderWithProviders(<FormCard />);
+    await expect(screen.findByTestId(/form/i)).toBeDefined();
   });
 
-  test('submit form', async () => {
-    const mockOnSubmitCard = vi.fn();
-    mockOnSubmitCard.mockClear();
-
-    render(<FormCard onSubmitCard={mockOnSubmitCard} />, {
-      container: document.body,
+  test('message where card is added', async () => {
+    renderWithProviders(<FormCard />, {
+      preloadedState: {
+        formReducer: {
+          cards: [],
+          message: true,
+        },
+      },
     });
+    await expect(screen.findByText(/Card is added success/i)).toBeDefined();
   });
 });

@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import searchReducer from './reducers/SearchSlice';
 import formReducer from './reducers/FormSlice';
 import { characterAPI } from '../services/CharactersService';
+import type { PreloadedState } from '@reduxjs/toolkit';
 
 const rootReducer = combineReducers({
   searchReducer,
@@ -9,10 +10,11 @@ const rootReducer = combineReducers({
   [characterAPI.reducerPath]: characterAPI.reducer,
 });
 
-export const setupStore = () => {
+export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(characterAPI.middleware),
+    preloadedState,
   });
 };
 

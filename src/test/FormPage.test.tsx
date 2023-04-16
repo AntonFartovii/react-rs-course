@@ -1,8 +1,9 @@
 import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormCard from '../components/Form';
+import { renderWithProviders } from './test-utils';
 
 describe('FormCard', () => {
   const mockOnSubmitCard = vi.fn();
@@ -12,7 +13,7 @@ describe('FormCard', () => {
     mockOnSubmitCard.mockClear();
   });
 
-  const renderFormCard = () => render(<FormCard onSubmitCard={mockOnSubmitCard} />);
+  const renderFormCard = () => renderWithProviders(<FormCard />);
 
   const submitFormCard = async () => {
     fireEvent.submit(screen.getByTestId('form'));

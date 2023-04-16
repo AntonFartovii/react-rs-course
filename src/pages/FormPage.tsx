@@ -18,7 +18,7 @@ const FormPage = ({ showPageName }: IPageProps) => {
     <>
       <FormCard />
       {message && <div className="message-card">Card is added success</div>}
-      <Cards cards={cards} />
+      <Cards cards={cards && cards} />
     </>
   );
 };

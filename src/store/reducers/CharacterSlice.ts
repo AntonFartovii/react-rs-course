@@ -19,7 +19,7 @@ export interface IData {
 }
 
 export const characterSlice = createSlice({
-  name: 'user',
+  name: 'character',
   initialState,
   reducers: {
     userFetching(state) {

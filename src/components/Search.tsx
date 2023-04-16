@@ -9,7 +9,7 @@ interface ISearchProps {
 
 const Search = ({ onFilterChange }: ISearchProps) => {
   const dispatch = useDispatch();
-  const searchTitle = useSelector((state: RootState) => state.searchReducer.searchTitle);
+  const { searchTitle } = useSelector((state: RootState) => state.searchReducer);
 
   const changeSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setSearchTitle(event.target.value));
