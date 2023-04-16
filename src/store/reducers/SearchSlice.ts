@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface SearchState {
-  searchTitle: string
+  searchTitle: string;
 }
 
 const initialState: SearchState = {
-  searchTitle: 'test'
-}
+  searchTitle: '',
+};
 
 export const SearchSlice = createSlice({
   name: 'search',
@@ -15,8 +15,8 @@ export const SearchSlice = createSlice({
     setSearchTitle: (state, action: PayloadAction<string>) => {
       state.searchTitle = action.payload;
     },
-  }
-})
+  },
+});
 
 export const { setSearchTitle } = SearchSlice.actions;
 

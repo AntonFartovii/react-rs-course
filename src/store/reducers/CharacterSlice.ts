@@ -1,16 +1,21 @@
-import {IСharacter} from './../../API/MainApi'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { ICharacter } from '../../models/ICharacter';
 
 interface CharacterState {
-  characters: IСharacter[],
-  isLoading: boolean,
-  error: string
+  characters: ICharacter[];
+  isLoading: boolean;
+  error: string;
 }
 
 const initialState: CharacterState = {
   characters: [],
   isLoading: false,
-  error: ''
+  error: '',
+};
+
+export interface IData {
+  info: string[];
+  results: ICharacter[];
 }
 
 export const characterSlice = createSlice({
@@ -18,18 +23,18 @@ export const characterSlice = createSlice({
   initialState,
   reducers: {
     userFetching(state) {
-        state.isLoading = true
+      state.isLoading = true;
     },
-    userFetchingSuccess(state, action: PayloadAction<IСharacter[]>) {
-        state.isLoading = false
-        state.error = ''
-        state.characters = action.payload
+    userFetchingSuccess(state, action: PayloadAction<IData>) {
+      state.isLoading = false;
+      state.error = '';
+      state.characters = action.payload.results;
     },
     userFetchingError(state, action: PayloadAction<string>) {
-        state.isLoading = false
-        state.error = action.payload
+      state.isLoading = false;
+      state.error = action.payload;
     },
-  }
-})
+  },
+});
 
 export default characterSlice.reducer;

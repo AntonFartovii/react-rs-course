@@ -1,12 +1,12 @@
 import React from 'react';
-import { IСharacter } from '../API/MainApi';
+import { ICharacter } from '../models/ICharacter';
 
 interface ICardProps {
-  card: IСharacter;
+  card: ICharacter;
   openModal: (content: JSX.Element) => void;
 }
 
-const Film = ({ card, openModal }: ICardProps) => {
+const Character = ({ card, openModal }: ICardProps) => {
   function handleClick() {
     openModal(content);
   }
@@ -32,4 +32,4 @@ const Film = ({ card, openModal }: ICardProps) => {
   return content;
 };
 
-export default Film;
+export default Character;

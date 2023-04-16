@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { IСharacter } from '../API/MainApi';
-import Film from './Film';
+import Character from './Character';
 import MyModal from './UI/myModal';
+import { ICharacter } from '../models/ICharacter';
 
-const Films = ({ items }: { items: IСharacter[] }) => {
+const Characters = ({ items }: { items: ICharacter[] }) => {
   const [modal, setModal] = useState<boolean>(false);
   const [content, setContent] = useState<JSX.Element>();
 
@@ -14,8 +14,8 @@ const Films = ({ items }: { items: IСharacter[] }) => {
 
   return (
     <div className="card-container" key="1c">
-      {items.map((card: IСharacter) => (
-        <Film key={card.id} card={card} openModal={handleModal} />
+      {items.map((card: ICharacter) => (
+        <Character key={card.id} card={card} openModal={handleModal} />
       ))}
       <MyModal visible={modal} setVisible={setModal}>
         <>{content}</>
@@ -24,4 +24,4 @@ const Films = ({ items }: { items: IСharacter[] }) => {
   );
 };
 
-export default Films;
+export default Characters;

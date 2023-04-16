@@ -1,45 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { fetchFilms, IСharacter } from '../API/MainApi';
-import Films from '../components/Films';
+import Characters from '../components/Characters';
 import Search from '../components/Search';
+import { characterAPI } from '../services/CharactersService';
 
 export interface IPageProps {
   showPageName?: (name: string) => void;
 }
 
-interface IFilter {
-  hairColor?: string;
-  name?: string;
-  limit?: number;
-}
-
 const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   const name = 'Main page';
-  const [films, setFilms] = useState<IСharacter[]>([]);
-  const [filterText, setFilterText] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
+  const [filterName, setFilterName] = useState<string>('');
 
-  useEffect(() => {
-    setIsLoading(true);
-    const filter: IFilter = { limit: 15 };
-    if (filterText) filter.name = filterText;
-    fetchFilms(filter).then((data) => {
-      setFilms(data);
-      setIsLoading(false);
-    });
-
-  }, [filterText]);
-
-  useEffect(() => {
-    const filterText = localStorage.getItem('inputValue');
-    filterText && setFilterText(filterText);
-  }, []);
+  const { data, error, isLoading } = characterAPI.useFetchAllCharactersQuery(filterName);
 
   const handleFilterChange = (filterText: string) => {
-    setFilterText(filterText);
+    setFilterName(filterText);
   };
-
-  const filteredFilms = films;
 
   useEffect(() => {
     showPageName && showPageName(name);
@@ -48,7 +24,9 @@ const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   return (
     <>
       <Search onFilterChange={handleFilterChange} />
-      {isLoading ? <span className="loader"></span> : <Films items={filteredFilms} />}
+      {isLoading && <span className="loader"></span>}
+      {error && <h1>Error</h1>}
+      {data && <Characters items={data && data.results} />}
     </>
   );
 };
