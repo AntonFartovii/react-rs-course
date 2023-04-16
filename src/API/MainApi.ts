@@ -1,6 +1,6 @@
 import { $host } from './index';
 
-export interface IFilm {
+export interface IСharacter {
   firstEpisode?: string;
   gender?: string;
   hairColor?: string;

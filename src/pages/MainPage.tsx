@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchFilms, IFilm } from '../API/MainApi';
+import { fetchFilms, IСharacter } from '../API/MainApi';
 import Films from '../components/Films';
 import Search from '../components/Search';
 
@@ -15,7 +15,7 @@ interface IFilter {
 
 const MainPage = ({ showPageName }: IPageProps): JSX.Element => {
   const name = 'Main page';
-  const [films, setFilms] = useState<IFilm[]>([]);
+  const [films, setFilms] = useState<IСharacter[]>([]);
   const [filterText, setFilterText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 

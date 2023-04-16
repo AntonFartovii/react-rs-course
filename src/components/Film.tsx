@@ -1,8 +1,8 @@
 import React from 'react';
-import { IFilm } from '../API/MainApi';
+import { IСharacter } from '../API/MainApi';
 
 interface ICardProps {
-  card: IFilm;
+  card: IСharacter;
   openModal: (content: JSX.Element) => void;
 }
 

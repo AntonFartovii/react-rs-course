@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { IFilm } from '../API/MainApi';
+import { IСharacter } from '../API/MainApi';
 import Film from './Film';
 import MyModal from './UI/myModal';
 
-const Films = ({ items }: { items: IFilm[] }) => {
+const Films = ({ items }: { items: IСharacter[] }) => {
   const [modal, setModal] = useState<boolean>(false);
   const [content, setContent] = useState<JSX.Element>();
 
@@ -14,7 +14,7 @@ const Films = ({ items }: { items: IFilm[] }) => {
 
   return (
     <div className="card-container" key="1c">
-      {items.map((card: IFilm) => (
+      {items.map((card: IСharacter) => (
         <Film key={card.id} card={card} openModal={handleModal} />
       ))}
       <MyModal visible={modal} setVisible={setModal}>
