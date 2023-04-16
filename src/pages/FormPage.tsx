@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import FormCard from '../components/Form';
 import Cards from '../components/Cards';
-import { ICard } from '../data/data';
 import { IPageProps } from './MainPage';
+import { useAppSelector } from '../hooks/redux';
+import { RootState } from '../store/store';
 
 const FormPage = ({ showPageName }: IPageProps) => {
   const name = 'Form page';
@@ -11,21 +12,12 @@ const FormPage = ({ showPageName }: IPageProps) => {
     showPageName && showPageName(name);
   }, [showPageName]);
 
-  const [cards, setCards] = useState<ICard[]>([]);
-  const [message, setMessage] = useState<string>('');
-
-  const handleCardAdd = async (card: ICard) => {
-    await setCards([...cards, card]);
-    await setMessage('Вы успешно добавили товар');
-    setTimeout(() => {
-      setMessage('');
-    }, 2000);
-  };
+  const { cards, message } = useAppSelector((state: RootState) => state.formReducer);
 
   return (
     <>
-      <FormCard onSubmitCard={handleCardAdd} />
-      {message && <div className="message-card">{message}</div>}
+      <FormCard />
+      {message && <div className="message-card">Card is added success</div>}
       <Cards cards={cards} />
     </>
   );

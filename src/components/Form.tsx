@@ -3,22 +3,13 @@ import { useForm } from 'react-hook-form';
 import CustomInput from './CustomInput';
 import { CURRENCY, STATE_GOOD } from '../constants/pages';
 import { ICard } from '../data/data';
+import { IForm } from '../models/IForm';
+import { useDispatch } from 'react-redux';
+import { addCard, addCardSuccess } from './../store/reducers/FormSlice';
 
-interface IFormProps {
-  onSubmitCard: (card: ICard) => void;
-}
+const FormCard = () => {
+  const dispatch = useDispatch();
 
-interface IForm {
-  title?: string;
-  description?: string;
-  date?: string;
-  file?: string | FileList;
-  price?: string | number;
-  state?: string;
-  currency?: string;
-}
-
-const FormCard = ({ onSubmitCard }: IFormProps) => {
   const {
     register,
     handleSubmit,
@@ -40,8 +31,11 @@ const FormCard = ({ onSubmitCard }: IFormProps) => {
       currency: data.currency,
       date: data.date,
     };
-    onSubmitCard(newCard);
+    dispatch(addCard(newCard));
     reset();
+    setTimeout(() => {
+      dispatch(addCardSuccess(false));
+    }, 2000);
   };
 
   return (

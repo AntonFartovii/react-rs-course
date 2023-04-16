@@ -6,13 +6,13 @@ export interface ICharacter {
   type: string;
   gender?: string;
   origin: {
-    name: string,
-    url: string
-  },
+    name: string;
+    url: string;
+  };
   location: {
-    name: string,
-    url: string
-  },
+    name: string;
+    url: string;
+  };
   image?: string;
   url?: string;
   episode: string[];
