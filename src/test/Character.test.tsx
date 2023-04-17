@@ -39,8 +39,20 @@ describe('Character test', () => {
     await expect(screen.findByDisplayValue(/Rick Sanchez/i)).toBeDefined();
   });
 
+  test('preloader', async () => {
+    renderWithProviders(<Character card={card} openModal={mockOnOpenModal} />);
+    await expect(screen.findByDisplayValue(/Rick Sanchez/i)).toBeDefined();
+  });
+
   test('render Character component', async () => {
     renderWithProviders(<Characters items={[card]} />);
     await expect(screen.findByTestId(/card-container/i)).toBeDefined();
+  });
+
+  test('should have a property "name"', () => {
+    // Создаем экземпляр интерфейса
+    const character: ICharacter = { name: 'John' };
+    expect(character.name).toEqual('John');
+    expect(card.name).toEqual('Rick Sanchez');
   });
 });

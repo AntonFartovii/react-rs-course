@@ -25,13 +25,13 @@ const Character = ({ card, openModal }: ICardProps) => {
         <p className="card-species">{card.species && card.species}</p>
         <h5 className="card-gender">{card.gender && card.gender}</h5>
         <p className="card-location">
-          <a href={card.location.url && card.location.url} target="_blank" rel="noreferrer">
-            {card.location.name && card.location.name}
+          <a href={card.location?.url && card.location?.url} target="_blank" rel="noreferrer">
+            {card.location?.name && card.location?.name}
           </a>
         </p>
         <p className="card-origin">
-          <a href={card.origin.url && card.origin.url} target="_blank" rel="noreferrer">
-            {card.origin.name && card.origin.name}
+          <a href={card.origin?.url && card.origin?.url} target="_blank" rel="noreferrer">
+            {card.origin?.name && card.origin?.name}
           </a>
         </p>
         <p className="card-created">{card.created && card.created}</p>
