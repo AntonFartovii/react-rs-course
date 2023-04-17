@@ -4,13 +4,16 @@ import { fireEvent, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FormCard from '../components/Form';
 import { renderWithProviders } from './test-utils';
+import FormPage from '../pages/FormPage';
 
 describe('FormCard', () => {
   const mockOnSubmitCard = vi.fn();
+  const mockOnShowTitle = vi.fn();
   const user = userEvent.setup();
 
   beforeEach(() => {
     mockOnSubmitCard.mockClear();
+    mockOnShowTitle.mockClear();
   });
 
   const renderFormCard = () => renderWithProviders(<FormCard />);
@@ -44,5 +47,10 @@ describe('FormCard', () => {
     await userEvent.click(screen.getByLabelText(/condition/i));
     await submitFormCard();
     await expect(screen.findByText(/You must agree/i)).toBeDefined();
+  });
+
+  test('render Form page', async () => {
+    renderWithProviders(<FormPage showPageName={mockOnShowTitle} />);
+    await expect(screen.findByText(/Form page/i)).toBeDefined();
   });
 });

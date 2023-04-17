@@ -1,8 +1,10 @@
 import React from 'react';
-import { describe, test, vi } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { renderWithProviders } from './test-utils';
 import Character from '../components/Character';
 import { ICharacter } from '../models/ICharacter';
+import Characters from '../components/Characters';
+import { screen } from '@testing-library/react';
 
 describe('Character test', () => {
   const mockOnOpenModal = vi.fn();
@@ -34,5 +36,11 @@ describe('Character test', () => {
 
   test('render Character component', async () => {
     renderWithProviders(<Character card={card} openModal={mockOnOpenModal} />);
+    await expect(screen.findByDisplayValue(/Rick Sanchez/i)).toBeDefined();
+  });
+
+  test('render Character component', async () => {
+    renderWithProviders(<Characters items={[card]} />);
+    await expect(screen.findByTestId(/card-container/i)).toBeDefined();
   });
 });

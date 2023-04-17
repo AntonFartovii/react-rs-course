@@ -13,7 +13,7 @@ const Characters = ({ items }: { items: ICharacter[] }) => {
   }
 
   return (
-    <div className="card-container" key="1c">
+    <div className="card-container" key="1c" data-testid="card-container">
       {items.map((card: ICharacter) => (
         <Character key={card.id} card={card} openModal={handleModal} />
       ))}
