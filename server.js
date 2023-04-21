@@ -44,8 +44,8 @@ const bootstrap = async () => {
         const html = template.replace('<!--ssr-outlet-->', appHtml)
 
         res.statusCode = 200
-        res.setHeader('Content-Type', 'text/html')
-        res.send(html)
+        res.setHeader('Content-Type', 'text/html').end(html)
+        // res.send(html)
       } catch (error) {
         vite.ssrFixStacktrace(error)
         next(error)

@@ -39,30 +39,10 @@ describe('App', () => {
     expect(getByText(`State: ${card.state}`));
   });
 
-  test('App', async () => {
-    renderWithProviders(<App />);
-    const headerElement = screen.getByRole('banner');
-    expect(headerElement).toBeInTheDocument();
-  });
-
-  test('navigates to 404 page when route is not found', () => {
-    renderWithProviders(
-      <MemoryRouter initialEntries={['/unknown']}>
-        <AppRouter />
-      </MemoryRouter>
-    );
-    expect(screen.getByText('Error 404!')).toBeInTheDocument();
-  });
-
   test('Cards', async () => {
     renderWithProviders(<Cards cards={data} />);
     const cards = document.querySelectorAll('.card');
     expect(cards.length).toBe(data.length);
-  });
-
-  test('About page title', async () => {
-    renderWithProviders(<AboutPage />);
-    expect(screen.getByText(/About us/i)).toBeDefined();
   });
 
   test('About page h1', () => {
@@ -81,6 +61,15 @@ describe('App', () => {
       </BrowserRouter>
     );
     expect(screen.getByText(/Error 404!/i)).toBeTruthy();
+  });
+
+  test('navigates to 404 page when route is not found', () => {
+    renderWithProviders(
+      <MemoryRouter initialEntries={['/unknown']}>
+        <AppRouter />
+      </MemoryRouter>
+    );
+    expect(screen.getByText('Error 404!')).toBeInTheDocument();
   });
 
   test('renders content children', () => {

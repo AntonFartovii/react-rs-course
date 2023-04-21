@@ -8,6 +8,7 @@ import App from './App';
 interface IRenderProps {
   path: string;
 }
+
 const store = setupStore();
 
 export const render = async ({ path }: IRenderProps) => {

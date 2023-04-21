@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { PAGE_404 } from '../constants/pages';
 import { IRoute, routesAll } from '../routes';
+import NavBar from './NavBar';
 
 interface IRouterProps {
   showPageName?: (name: string) => void;
@@ -22,7 +23,7 @@ const AppRouter = ({ showPageName }: IRouterProps) => {
   return (
     <Routes>
       {routesAll.map(renderRoutes)}
-      <Route path="*" element={<Navigate to={PAGE_404} />} />
+      <Route path="*" element={<Navigate to={PAGE_404}/>}/>
     </Routes>
   );
 };

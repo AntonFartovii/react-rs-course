@@ -13,21 +13,6 @@
     "coverage": "npx vitest --coverage",
     "eslint": "eslint --fix . --ext .ts --ext .tsx"
   },
-  "moduleFileExtensions": [
-    "ts",
-    "tsx",
-    "js",
-    "json"
-  ],
-  "babel": {
-    "presets": [
-      "@babel/env",
-      "@babel/react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread"
-    ]
-  },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.5",

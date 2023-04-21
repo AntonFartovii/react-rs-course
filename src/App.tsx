@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import Header from './common/Header';
-import Content from './common/Content';
 import AppRouter from './components/AppRouter';
+import NavBar from './components/NavBar';
 
 function App() {
   const [namePage, setNamePage] = useState<string>('');
@@ -11,14 +10,21 @@ function App() {
     setNamePage(name);
   };
 
-  return (
-    <>
-      <Header currentPage={namePage} />
-      <Content>
-        <AppRouter showPageName={handlePageNameChange} />
-      </Content>
-    </>
-  );
+    return (
+      <>
+        <header>
+          <div>
+            {namePage && namePage}
+          </div>
+          <NavBar/>
+        </header>
+        <main className="container container-main">
+          <div className="inner-wrapper">
+            <AppRouter showPageName={handlePageNameChange}/>
+          </div>
+        </main>
+      </>
+    );
 }
 
 export default App;
