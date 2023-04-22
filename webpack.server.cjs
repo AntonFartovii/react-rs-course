@@ -3,13 +3,13 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: './server.js',
+  entry: './server.ts',
   target: 'node',
   mode: 'development',
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'server-build'),
-    filename: './server.js',
+    filename: './server.ts',
     publicPath: '/'
   },
   module: {
