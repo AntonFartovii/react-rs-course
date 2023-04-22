@@ -1,16 +1,14 @@
 import React from 'react';
 import { describe, expect, test } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import App from '../App';
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import AboutPage from '../pages/AboutPage';
 import Page404 from '../pages/Page404';
 import AppRouter from '../components/AppRouter';
 import Cards from '../components/Cards';
 import { cardData } from '../data/data';
-import Content from '../common/Content';
 import Card from '../components/Card';
-import { STATE_GOOD } from '../constants/pages';
+import { STATE_GOOD } from '../data/constants';
 import { renderWithProviders } from './test-utils';
 
 describe('App', () => {
@@ -70,11 +68,5 @@ describe('App', () => {
       </MemoryRouter>
     );
     expect(screen.getByText('Error 404!')).toBeInTheDocument();
-  });
-
-  test('renders content children', () => {
-    const text = 'Hello, World!';
-    const { getByText } = render(<Content>{text}</Content>);
-    expect(getByText(text)).toBeInTheDocument();
   });
 });

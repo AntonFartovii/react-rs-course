@@ -1,5 +1,5 @@
 import React from 'react';
-import { ABOUT_US, FORM_ROUTE, MAIN_ROUTE, PAGE_404 } from './constants/pages';
+import { ABOUT_US, FORM_ROUTE, MAIN_ROUTE, PAGE_404 } from './data/constants';
 import MainPage from './pages/MainPage';
 import AboutPage from './pages/AboutPage';
 import FormPage from './pages/FormPage';

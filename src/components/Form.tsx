@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import CustomInput from './CustomInput';
-import { CURRENCY, STATE_GOOD } from '../constants/pages';
+import { CURRENCY, STATE_GOOD } from '../data/constants';
 import { ICard } from '../data/data';
 import { IForm } from '../models/IForm';
 import { useDispatch } from 'react-redux';

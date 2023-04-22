@@ -1,4 +1,4 @@
-import { STATE_GOOD } from '../constants/pages';
+import { STATE_GOOD } from './constants';
 
 export interface ICard {
   id: string;
