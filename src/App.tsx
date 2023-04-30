@@ -11,17 +11,11 @@ function App() {
   };
 
   return (
-    <>
-      <header>
-        <div>{namePage && namePage}</div>
-        <NavBar />
-      </header>
       <main className="container container-main">
         <div className="inner-wrapper">
           <AppRouter showPageName={handlePageNameChange} />
         </div>
       </main>
-    </>
   );
 }
 

@@ -2,6 +2,7 @@ import fs from 'fs/promises';
 import path from 'path';
 import { createServer, ViteDevServer } from 'vite';
 import express from 'express';
+import { h } from 'vitest/dist/types-7cd96283';
 const PORT = 5001;
 const server = express();
 const DEV_ENV = 'development';
@@ -42,8 +43,9 @@ const bootstrap = async () => {
       const appHtml = await render({ path: url });
       const html = template?.replace('<!--ssr-outlet-->', appHtml);
 
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/html').end(html);
+      // res.statusCode = 200;
+      // res.setHeader('Content-Type', 'text/html').end(html);
+      res.status(200).set({'Content-Type': 'text/html'}).end(html)
     } catch (error) {
       vite.ssrFixStacktrace(error as Error);
       next(error as Error);
