@@ -1,30 +1,30 @@
-import React, {Component} from 'react';
-import {Routes, Route, Navigate} from 'react-router-dom'
-import {IRoute, routesAll} from "../routes";
-import {PAGE_404} from "../constants/pages";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { PAGE_404 } from '../data/constants';
+import { IRoute, routesAll } from '../routes';
 
 interface IRouterProps {
-
+  showPageName?: (name: string) => void;
 }
 
-interface IRouterState {
+const AppRouter = ({ showPageName }: IRouterProps) => {
+  const renderRoutes = (route: IRoute) => {
+    const Component = route.Component;
+    return (
+      <Route
+        key={route.path}
+        path={route.path}
+        element={<Component showPageName={showPageName} />}
+      />
+    );
+  };
 
-}
-
-export default class AppRouter extends Component<IRouterProps, IRouterState> {
-
-    render() {
-        return (
-                <Routes>
-                    {
-                        routesAll.map( (route: IRoute) =>
-                            <Route key={route.path} path={route.path} element={route.Component} />
-                        )
-                    }
-                    <Route path="*" element={<Navigate to={PAGE_404}/>} />
-                </Routes>
-
-        );
-    }
+  return (
+    <Routes>
+      {routesAll.map(renderRoutes)}
+      <Route path="*" element={<Navigate to={PAGE_404} />} />
+    </Routes>
+  );
 };
 
+export default AppRouter;

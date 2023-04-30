@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from 'react';
+import { IPageProps } from './MainPage';
 
-export default class AboutPage extends React.Component<any, any>{
-    render() {
-        return(
-            <h1>About us</h1>
-        )
-    }
-}
+const AboutPage = ({ showPageName }: IPageProps) => {
+  const name = 'About us';
+
+  useEffect(() => {
+    showPageName && showPageName(name);
+  }, [showPageName]);
+
+  return <h1>About us</h1>;
+};
+
+export default AboutPage;

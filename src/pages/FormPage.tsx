@@ -1,38 +1,26 @@
-import React from "react";
-import FormCard from "../components/Form";
-import Cards from "../components/Cards";
-import {ICard} from "../data/data";
+import React, { useEffect } from 'react';
+import FormCard from '../components/Form';
+import Cards from '../components/Cards';
+import { IPageProps } from './MainPage';
+import { useAppSelector } from '../hooks/redux';
+import { RootState } from '../store/store';
 
+const FormPage = ({ showPageName }: IPageProps) => {
+  const name = 'Form page';
 
-interface IFormPageState {
-    cards: ICard[]
-}
+  useEffect(() => {
+    showPageName && showPageName(name);
+  }, [showPageName]);
 
-interface IFormPageProps {
+  const { cards, message } = useAppSelector((state: RootState) => state.formReducer);
 
-}
+  return (
+    <>
+      <FormCard />
+      {message && <div className="message-card">Card is added success</div>}
+      <Cards cards={cards && cards} />
+    </>
+  );
+};
 
-export default class FormPage extends React.Component<IFormPageProps, IFormPageState> {
-    constructor(props: IFormPageProps) {
-        super(props);
-        this.state = {
-            cards: []
-        }
-    }
-
-    handleCardAdd = (card: ICard) => {
-        this.setState({
-            cards: [...this.state.cards, card]
-        })
-    }
-
-    render() {
-        return (
-            <>
-                <FormCard onSubmitCard={this.handleCardAdd}/>
-                <Cards cards={this.state.cards}/>
-            </>
-        );
-    }
-
-}
+export default FormPage;

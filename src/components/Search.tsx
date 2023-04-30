@@ -1,61 +1,42 @@
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchTitle } from './../store/reducers/SearchSlice';
+import { RootState } from '../store/store';
 
-import React, {ChangeEvent} from "react";
-import {Simulate} from "react-dom/test-utils";
-import input = Simulate.input;
-
-type ISearchProps = {
-    onFilterChange: (filterText: string) => void
+interface ISearchProps {
+  onFilterChange: (filterText: string) => void;
 }
 
-type ISearchState = {
-    input: string
-}
+const Search = ({ onFilterChange }: ISearchProps) => {
+  const dispatch = useDispatch();
+  const { searchTitle } = useSelector((state: RootState) => state.searchReducer);
 
-export class Search extends React.Component<ISearchProps, ISearchState> {
+  const changeSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchTitle(event.target.value));
+  };
 
-   constructor(props: ISearchProps) {
-       super(props)
-       this.state = {
-           input: ''
-       }
-       this.changeSearchInput = this.changeSearchInput.bind(this)
-   }
-
-    changeSearchInput( event: ChangeEvent<HTMLInputElement> ) {
-        this.setState({
-            ...this.state, input: event.target.value
-        })
-        this.props.onFilterChange( event.target.value );
+  const handlerSearch = async (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      onFilterChange(searchTitle);
     }
+  };
 
-    componentDidMount(): void {
-        const input = localStorage.getItem('inputValue')
-        input && this.setState({ input })
-    }
+  return (
+    <>
+      <div className="search-bar">
+        <label htmlFor="my_search">Поиск:</label>
+        <input
+          id="my_search"
+          type="text"
+          placeholder="Searching by character name..."
+          value={searchTitle}
+          onChange={changeSearchInput}
+          onKeyDown={handlerSearch}
+        />
+      </div>
+      <p>Search Results for: {searchTitle}</p>
+    </>
+  );
+};
 
-    componentDidUpdate(
-        prevProps: Readonly<ISearchProps>,
-        prevState: Readonly<ISearchState>, snapshot?: any): void {
-        prevState.input !== this.state.input
-        && localStorage.setItem('inputValue', this.state.input)
-
-    }
-
-    // componentWillUnmount(): void {
-    //    localStorage.removeItem('inputValue')
-    // }
-
-    render() {
-        return (
-            <div className="search-bar">
-                <input
-                    type="text"
-                    placeholder="Search..."
-                    value={this.state.input}
-                    onChange={this.changeSearchInput}
-                />
-            </div>
-
-        )
-    }
-}
+export default Search;

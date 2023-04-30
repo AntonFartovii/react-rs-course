@@ -1,22 +1,22 @@
-import React from 'react';
-import './App.css'
-import {BrowserRouter} from 'react-router-dom'
-import AppRouter from "./components/AppRouter";
-import Header from "./common/Header";
-import Content from "./common/Content";
+import React, { useState } from 'react';
+import './App.css';
+import AppRouter from './components/AppRouter';
+import NavBar from './components/NavBar';
 
 function App() {
+  const [namePage, setNamePage] = useState<string>('');
 
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Header/>
-                <Content>
-                    <AppRouter/>
-                </Content>
-            </BrowserRouter>
+  const handlePageNameChange = (name: string) => {
+    setNamePage(name);
+  };
+
+  return (
+      <main className="container container-main">
+        <div className="inner-wrapper">
+          <AppRouter showPageName={handlePageNameChange} />
         </div>
-    )
+      </main>
+  );
 }
 
-export default App
+export default App;

@@ -1,10 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from 'react';
+import App from './App';
+import { setupStore } from './store/store';
+import { Provider } from 'react-redux';
+import { hydrateRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+const store = setupStore();
+const root = document.getElementById('root') as HTMLElement;
+
+hydrateRoot(
+  root,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+);
