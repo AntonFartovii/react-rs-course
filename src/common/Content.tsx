@@ -1,15 +1,15 @@
-import React, {ReactNode} from 'react';
+import React, { ReactNode } from 'react';
 
 interface IContentProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
-export default class Content extends React.Component<IContentProps, {}> {
-    render() {
-        return (
-            <main className="container container-main">
-                { this.props.children }
-            </main>
-        );
-    }
+const Content = ({ children }: IContentProps) => {
+  return (
+    <main className="container container-main">
+      <div className="inner-wrapper">{children}</div>
+    </main>
+  );
 };
+
+export default Content;

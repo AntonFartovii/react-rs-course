@@ -1,58 +1,40 @@
-import React from "react";
-import {ICard} from "../data/data";
-import {Search} from "./Search";
-import Card from "./Card";
+import React, { useEffect, useState } from 'react';
+import { ICard } from '../data/data';
+import Search from './Search';
+import Card from './Card';
 
-interface ICardsState {
-    filterText: string;
-}
+const Cards = ({ cards }: { cards: ICard[] }) => {
+  const [filterText, setFilterText] = useState('');
 
-interface ICardsProps {
-    cards: ICard[]
-}
+  const handleFilterChange = (filterText: string) => {
+    setFilterText(filterText);
+  };
 
-export default class Cards extends React.Component<ICardsProps, ICardsState> {
-    constructor(props: ICardsProps) {
-        super(props);
-        this.state = {
-            filterText: "",
-        }
-        this.handleFilterChange = this.handleFilterChange.bind(this)
-    }
+  useEffect(() => {
+    const filterText = localStorage.getItem('inputValue');
+    filterText && setFilterText(filterText);
+  }, []);
 
-    handleFilterChange = (filterText: string) => {
-        this.setState({ filterText })
-    }
+  let filteredCards = cards;
+  if (filterText.length > 0) {
+    filteredCards = cards.filter(
+      (card: ICard) =>
+        card.title?.toLowerCase().includes(filterText.toLowerCase()) ||
+        card.description?.toLowerCase().includes(filterText.toLowerCase())
+    );
+  }
 
-    componentDidMount(): void {
-        const filterText = localStorage.getItem('inputValue')
-        filterText && this.setState({ filterText })
-    }
+  return (
+    <>
+      <Search onFilterChange={handleFilterChange} />
 
-    render() {
-        const cards = this.props.cards
-        const { filterText } = this.state
+      <div className="card-container" key="1c">
+        {filteredCards.map((card: ICard) => (
+          <Card key={card.id} card={card} />
+        ))}
+      </div>
+    </>
+  );
+};
 
-        let filteredCards = cards
-        if ( filterText.length > 0 ) {
-            filteredCards = cards.filter((card: ICard) =>
-                card.title.toLowerCase().includes(filterText.toLowerCase()) ||
-                card.description?.toLowerCase().includes(filterText.toLowerCase())
-            )
-        }
-
-        return(
-            <>
-                <Search onFilterChange={ this.handleFilterChange }/>
-
-                <div className="card-container" key="1c">
-                    {
-                        filteredCards.map( (card: ICard) =>
-                            <Card key={card.id} card={card} />
-                        )
-                    }
-                </div>
-            </>
-        )
-    }
-}
+export default Cards;

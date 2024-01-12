@@ -1,20 +1,17 @@
 import React from 'react';
-import NavBar from "../components/NavBar";
+import NavBar from '../components/NavBar';
 
 interface IHeaderProps {
-
+  currentPage?: string;
 }
 
-interface IHeaderState {
-
-}
-
-export default class Header extends React.Component<IHeaderProps, IHeaderState> {
-    render() {
-        return (
-            <div className="app-header">
-                <NavBar/>
-            </div>
-        );
-    }
+const Header = ({ currentPage }: IHeaderProps) => {
+  return (
+    <header>
+      <div>{currentPage && currentPage}</div>
+      <NavBar />
+    </header>
+  );
 };
+
+export default Header;
